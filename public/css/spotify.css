@@ -1,16 +1,91 @@
-.main-header {
-	padding: 40px 0 20px;
-	/*background-color: red;*/
-	/*color: #fff;*/
+body {background-color: #000;}
+
+h1 {
+	color: #fff;
+	font-size: 40px;
+	font-weight: bold;
+	font-family: 'Roboto', sans-serif;
+	-webkit-font-smoothing: antialiased;
 }
 
-.main-content {
-	padding: 20px 0 10px;
-	height: 400px;
-	/*background-color: blue;*/
-	/*color: #fff;*/
+h1 .logo {
+	height: 50px;
 }
 
-	.artwork {
-		margin-bottom: 20px;
-	}
+h2 {color: #fff;}
+
+h3 {
+	color: #fff;
+	margin-top: 10px;
+	font-size: 20px;
+	font-weight: 500;
+	font-family: 'Roboto', sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+.btn-success {
+	margin-top: 16px;
+	padding: 12px 24px;
+	background-color: #1ED760;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	letter-spacing: 1px;
+}
+
+h1 .fa-spotify {
+	font-size: 50px;
+	color: #1ED760;
+}
+
+.hero-wrapper{
+	background-color: #000;
+	background-image: url(../images/hero-background.jpg);
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: center center;
+	background-size: cover;
+}
+
+.header-wrapper{/*background-color: purple;*/}
+
+/* scss van maken */
+.main-logo{
+	/*background-color: grey*/;
+	margin: 40px 0;
+}
+.main-logo img{width: 100px;}
+
+.main-copy{
+	/*background-color: green*/;
+	margin: 40px 0;
+}
+
+.main-copy img.spotify-logo {height: 50px;}
+
+.main-phone{
+	/*background-color: yellow*/;
+	height: 630px;
+	position: relative;
+}
+.main-phone img {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	margin-left: -198px;
+}
+
+.footer-wrapper{background-color: #241126;}
+
+.footer-content {
+	/*background-color: brown*/;
+	margin: 280px auto 140px;
+}
+
+.latest-releases-copy {
+	/*background-color: red*/;
+}
+
+.latest-releases-covers {
+	/*background-color: green*/;
+	margin: 80px 0 40px;
+}
