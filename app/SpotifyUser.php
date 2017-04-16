@@ -18,4 +18,9 @@ class SpotifyUser extends Model
     	'accessToken',
     	'refreshToken',
     ];
+
+    public function artistFollow()
+    {
+    	return $this->hasOne('App\ArtistFollow');
+    }
 }

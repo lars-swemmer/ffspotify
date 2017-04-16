@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ArtistFollow;
 use App\SpotifyUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -62,10 +63,16 @@ class SpotifyController extends Controller
 			// 1. saveCurrentUserProfile()
 			$spotify_user = $this->saveCurrentUserProfile($api->me(), $session);
 
-			// works (checkt of gebruiker artiest volgt)
+			// 2. works (checkt of gebruiker artiest volgt) (artist id dynamisch maken vanuit DB)
 			$currentUserFollows = $api->currentUserFollows('artist', '6cEuCEZu7PAE9ZSzLLc2oQ');
+			$this->saveArtistFollow($currentUserFollows, $spotify_user);
 
-			dd($currentUserFollows);
+			dd('gelukt');
+
+
+
+
+
 
 			// works (laat gebruiker artiest volgen)
 			// $api->followArtistsOrUsers('artist', '6cEuCEZu7PAE9ZSzLLc2oQ');
@@ -118,5 +125,15 @@ class SpotifyController extends Controller
 			]
 		);
 		return $spotify_user;
+	}
+
+	public function saveArtistFollow($currentUserFollows, $spotify_user)
+	{
+		$new_follow = ($currentUserFollows[0] == false ? '1' : '0'); // returns true
+
+		// moet nog associeren met een playlist, mocht deze veranderen, dus zoeken op id en playlist_Id
+		$artist_follow = ArtistFollow::firstOrCreate(
+			['spotify_user_id' => $spotify_user->id], ['new_follow' => $new_follow]
+		);
 	}
 }
