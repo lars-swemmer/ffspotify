@@ -25,7 +25,7 @@
                     <h1>Follow me on <i class="fa fa-spotify" aria-hidden="true"></i> Spotify</h1>
                     <h3>and be the first to hear my brand new music</h3>
                     {{-- <button type="button" class="btn btn-lg btn-success">Connect with <i class="fa fa-spotify" aria-hidden="true"></i> Spotify</button> --}}
-                    <button type="button" class="btn btn-lg btn-success">Click here to connect &amp; follow</button>
+                    <a href="{{ $oauthUrl }}" class="btn btn-lg btn-success">Click here to connect &amp; follow</a>
                 </div>
 
                 <div class="main-phone text-center">
@@ -38,51 +38,20 @@
         <div class="container-fluid footer-wrapper">
             <div class="container footer-content">
                 <div class="text-center latest-releases-copy">
+
                     <img src="images/avatar.png">
+
                     <h2>Latest Releases</h2>
                 </div> <!-- latest-releases-copy -->
 
                 <div class="latest-releases-covers">
+                    @foreach($albums->items as $album)
                     <div class="col-lg-3 col-md-4 col-xs-12 thumb">
-                        <a class="thumbnail" href="#">
-                            <img class="img-responsive" src="https://i.scdn.co/image/438b5e69ca0aab2c944e8b2cb18cc77c94c019e0" alt="">
+                        <a target="_blank" class="thumbnail" href="{{ $album->external_urls->spotify }}">
+                            <img class="img-responsive" src="{{ $album->images[0]->url }}" alt="">
                         </a>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-xs-12 thumb">
-                        <a class="thumbnail" href="#">
-                            <img class="img-responsive" src="https://i.scdn.co/image/438b5e69ca0aab2c944e8b2cb18cc77c94c019e0" alt="">
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-xs-12 thumb">
-                        <a class="thumbnail" href="#">
-                            <img class="img-responsive" src="https://i.scdn.co/image/438b5e69ca0aab2c944e8b2cb18cc77c94c019e0" alt="">
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-xs-12 thumb">
-                        <a class="thumbnail" href="#">
-                            <img class="img-responsive" src="https://i.scdn.co/image/438b5e69ca0aab2c944e8b2cb18cc77c94c019e0" alt="">
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-xs-12 thumb">
-                        <a class="thumbnail" href="#">
-                            <img class="img-responsive" src="https://i.scdn.co/image/438b5e69ca0aab2c944e8b2cb18cc77c94c019e0" alt="">
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-xs-12 thumb">
-                        <a class="thumbnail" href="#">
-                            <img class="img-responsive" src="https://i.scdn.co/image/438b5e69ca0aab2c944e8b2cb18cc77c94c019e0" alt="">
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-xs-12 thumb">
-                        <a class="thumbnail" href="#">
-                            <img class="img-responsive" src="https://i.scdn.co/image/438b5e69ca0aab2c944e8b2cb18cc77c94c019e0" alt="">
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-xs-12 thumb">
-                        <a class="thumbnail" href="#">
-                            <img class="img-responsive" src="https://i.scdn.co/image/438b5e69ca0aab2c944e8b2cb18cc77c94c019e0" alt="">
-                        </a>
-                    </div>
+                    @endforeach
                     <div class="clearfix"></div>
                 </div> <!-- latest-releases-covers -->
 

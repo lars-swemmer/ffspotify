@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Input;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +13,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('spotify.index');
-});
+Route::get('/', 'SpotifyController@index');
+Route::get('/callback/', 'SpotifyController@callback');
