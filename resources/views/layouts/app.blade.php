@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 <head>
+    <!-- These meta tags come first. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,10 +9,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Fanbase') }}</title>
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" rel="stylesheet">
+
+    <!-- Include the CSS -->
+    <link href="{{ asset('css/toolkit-inverse.min.css') }}" rel="stylesheet"> <!-- deze misschien aanpassen van dist uit asset? -->
+    <link href="{{ asset('css/application.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -21,67 +25,66 @@
     </script>
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 sidebar">
+                <nav class="sidebar-nav">
+                    <div class="sidebar-header">
+                        <button class="nav-toggler nav-toggler-sm sidebar-toggler" type="button" data-toggle="collapse" data-target="#nav-toggleable-sm">
+                            <span class="sr-only">Toggle nav</span>
+                        </button>
+                        <a class="sidebar-brand img-responsive" href="index.html">
+                            <h1 class="text-muted"><span class="icon icon-database"></span> Fanbase</h1>
+                        </a>
+                    </div>
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        Fanbase
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
+                    <div class="collapse nav-toggleable-sm" id="nav-toggleable-sm">
+                        {{-- <form class="sidebar-form">
+                            <input class="form-control" type="text" placeholder="Search...">
+                            <button type="submit" class="btn-link">
+                                <span class="icon icon-magnifying-glass"></span>
+                            </button>
+                        </form> --}}
+                        <ul class="nav nav-pills nav-stacked">
+                            <li class="nav-header">Dashboards</li>
+                            <li class="active">
+                                <a href="index.html">Overview</a>
                             </li>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                            <li>
+                                <a href="#">Fan insights</a>
+                            </li>
 
-        @yield('content')
-    </div>
+                            <li class="nav-header">Account</li>
+                            <li>
+                                <a href="#"> <!-- laten linken naar aanpassen account, of gewoon geen link -->
+                                    {{ Auth::user()->name }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        </ul>
+                        <hr class="visible-xs m-t">
+                    </div>
+                </nav>
+            </div> <!-- sidebar -->
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+            <div class="col-sm-9 content">
+                @yield('content')                
+            </div> <!-- /content -->
+
+        </div> <!-- /row -->
+    </div> <!-- /container -->
+
+    <!-- Include jQuery (required) and the JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="{{ asset('js/chart.js') }}"></script>
+    <script src="{{ asset('js/toolkit.min.js') }}"></script>
 </body>
 </html>
