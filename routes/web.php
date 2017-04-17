@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Input;
 Route::get('/', 'SpotifyController@index')->name('index');
 Route::get('/callback/', 'SpotifyController@callback')->name('callback');
 Route::get('/success', 'SpotifyController@success')->name('success');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
