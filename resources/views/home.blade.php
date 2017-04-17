@@ -28,7 +28,7 @@
                     </h2>
                     <hr class="statcard-hr m-b-0">
                 </div>
-                <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[28,68,41,43,96,45,100]}]" data-labels="['a','b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
+                <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[0,0,0,0,0,0,0]}]" data-labels="['a','b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
             </div>
         </div>
         <div class="col-sm-6 col-lg-3 m-b">
@@ -41,7 +41,7 @@
                     </h2>
                     <hr class="statcard-hr m-b-0">
                 </div>
-                <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[4,34,64,27,96,50,80]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
+                <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[0,0,0,0,0,0,0]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
             </div>
         </div>
         <div class="col-sm-6 col-lg-3 m-b">
@@ -54,7 +54,7 @@
                     </h2>
                     <hr class="statcard-hr m-b-0">
                 </div>
-                <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[12,38,32,60,36,54,68]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
+                <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[0,0,0,0,0,0,0 ]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
             </div>
         </div>
         <div class="col-sm-6 col-lg-3 m-b">
@@ -67,7 +67,7 @@
                     </h2>
                     <hr class="statcard-hr m-b-0">
                 </div>
-                <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[43,48,52,58,50,95,100]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
+                <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[0,0,0,0,0,0,0]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
             </div>
         </div>
     </div> <!-- /statcards -->

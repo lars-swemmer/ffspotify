@@ -15,9 +15,9 @@ class SpotifyController extends Controller
     {
     	// auth credentials
 		$session = new SpotifyWebAPI\Session(
-		    '1beaa1a1cf2f4680917bc116a61beaf3',
-		    '7dc2b417205b4c0fabe5f9c4587bb558',
-		    'http://ffspotify.dev/callback/'
+		    env('SPOTIFY_CLIENT_ID'),
+		    env('SPOTIFY_CLIENT_SECRET'),
+		    env('SPOTIFY_REDIRECT_URI')
 		);
 
 		$options = [
@@ -56,7 +56,7 @@ class SpotifyController extends Controller
 		if ($code != '') {
 
 			// Spotify API setup
-			$session = new SpotifyWebAPI\Session('1beaa1a1cf2f4680917bc116a61beaf3', '7dc2b417205b4c0fabe5f9c4587bb558', 'http://ffspotify.dev/callback/');
+			$session = new SpotifyWebAPI\Session(env('SPOTIFY_CLIENT_ID'), env('SPOTIFY_CLIENT_SECRET'), env('SPOTIFY_REDIRECT_URI'));
 			$session->requestAccessToken($_GET['code']);
 			$accessToken = $session->getAccessToken();
 
@@ -115,9 +115,9 @@ class SpotifyController extends Controller
 	public function success()
 	{
 		$session = new SpotifyWebAPI\Session(
-		    '1beaa1a1cf2f4680917bc116a61beaf3',
-		    '7dc2b417205b4c0fabe5f9c4587bb558',
-		    'http://ffspotify.dev/callback/'
+		    env('SPOTIFY_CLIENT_ID'),
+		    env('SPOTIFY_CLIENT_SECRET'),
+		    env('SPOTIFY_REDIRECT_URI')
 		);
 
 		// client credentials
@@ -132,10 +132,11 @@ class SpotifyController extends Controller
 		return view('spotify.success', compact('albums'));
 	}
 
-
-	// als geen plaatje is kan je geen images[0] doet
 	public function saveCurrentUserProfile($me, $session)
 	{
+		// als geen plaatje is kan je geen images[0] doet
+		// ...
+
 		$spotify_user = SpotifyUser::updateOrCreate(
 			['spotify_id' => $me->id], [
 				'display_name' => $me->display_name,
