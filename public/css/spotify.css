@@ -37,6 +37,11 @@ h1 .fa-spotify {
 	color: #1ED760;
 }
 
+h1 .fa-check-circle-o {
+	font-size: 50px;
+	color: #1ED760;
+}
+
 .hero-wrapper{
 	background-color: #000;
 	background-image: url(../images/hero-background.jpg);

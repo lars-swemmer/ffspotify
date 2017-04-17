@@ -78,11 +78,13 @@ class SpotifyController extends Controller
 			// 3.2 works (laat gebruiker playlist volgen)
 			$api->followPlaylist('r3hab', '5zXU4g6vN5cDpDo7ei6PsZ');
 
+			// completed steps ook alleen als nieuwe gebruiker is? anders als iemand nog keer steeps doorloopt betaal je wel? Refresh success page is al wel hiermee opgelost
+			return redirect()->route('success')->with('completed_steps', true);
+
+			/////////////////////////////////////////////// TODO ///////////////////////////////////////////////
+
 			// works (laat gebruiker playlist volgen)
 			// $api->followPlaylist('r3hab', '5zXU4g6vN5cDpDo7ei6PsZ');
-
-			// works (haalt gebruiker zijn playlists op, max 50)
-			// $playlists = $api->getMyPlaylists(['limit' => '50']);
 
 			// works (haalt gebruiker zijn 50 laatst gespeelde tracks op)
 			// $recentTracks = $api->getMyRecentTracks(['limit' => '50']);
@@ -98,12 +100,34 @@ class SpotifyController extends Controller
 
 			// dd($followedArtists);
 
+			/////////////////////////////////////////////// END TODO ///////////////////////////////////////////
+
 			return 'Succesfull connection';
 	    }
 
 	    return 'Something strange happend, please try to connect again. Response code:' .$code;
 		// log to errors database log
 		// ...
+	}
+
+	public function success()
+	{
+		$session = new SpotifyWebAPI\Session(
+		    '1beaa1a1cf2f4680917bc116a61beaf3',
+		    '7dc2b417205b4c0fabe5f9c4587bb558',
+		    'http://ffspotify.dev/callback/'
+		);
+
+		// client credentials
+		$session->requestCredentialsToken();
+		$accessToken = $session->getAccessToken();
+
+		$api = new SpotifyWebAPI\SpotifyWebAPI();
+		$api->setAccessToken($accessToken);
+
+		$albums = $api->getArtistAlbums('6cEuCEZu7PAE9ZSzLLc2oQ', ['album_type' => 'single', 'limit' => '8']);
+
+		return view('spotify.success', compact('albums'));
 	}
 
 	public function saveCurrentUserProfile($me, $session)
