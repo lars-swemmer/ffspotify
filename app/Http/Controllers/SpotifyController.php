@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ArtistFollow;
+use App\PlaylistFollow;
 use App\SpotifyUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -63,22 +64,19 @@ class SpotifyController extends Controller
 			// 1. saveCurrentUserProfile()
 			$spotify_user = $this->saveCurrentUserProfile($api->me(), $session);
 
-			// 2. works (checkt of gebruiker artiest volgt) (artist id dynamisch maken vanuit DB)
-			$currentUserFollows = $api->currentUserFollows('artist', '6cEuCEZu7PAE9ZSzLLc2oQ');
-			$this->saveArtistFollow($currentUserFollows, $spotify_user);
+			// 2.1 works (checkt of gebruiker artiest volgt) (artist id dynamisch maken vanuit DB)
+			$currentUserFollowsArtist = $api->currentUserFollows('artist', '6cEuCEZu7PAE9ZSzLLc2oQ');
+			$this->saveArtistFollow($currentUserFollowsArtist, $spotify_user);
 
-			dd('gelukt');
+			// 2.2 works (laat gebruiker artiest volgen) (artist id dynamisch maken vanuit DB)
+			$api->followArtistsOrUsers('artist', '6cEuCEZu7PAE9ZSzLLc2oQ');
 
+			// 3.1 works (checkt of gebruiker playlist volgt, moet spotify_id meegeven) (playlist id dynamisch maken vanuit DB met artiest naam dus?)
+			$currentUserFollowsPlaylist = $api->userFollowsPlaylist('r3hab', '5zXU4g6vN5cDpDo7ei6PsZ' ,['ids' => $spotify_user->spotify_id]);
+			$this->savePlaylistFollow($currentUserFollowsPlaylist, $spotify_user);
 
-
-
-
-
-			// works (laat gebruiker artiest volgen)
-			// $api->followArtistsOrUsers('artist', '6cEuCEZu7PAE9ZSzLLc2oQ');
-
-			// works (checkt of gebruiker playlist volgt, moet spotify_id meegeven)
-			// $api->userFollowsPlaylist('r3hab', '5zXU4g6vN5cDpDo7ei6PsZ' ,['ids' => 'larsswemmer']);
+			// 3.2 works (laat gebruiker playlist volgen)
+			$api->followPlaylist('r3hab', '5zXU4g6vN5cDpDo7ei6PsZ');
 
 			// works (laat gebruiker playlist volgen)
 			// $api->followPlaylist('r3hab', '5zXU4g6vN5cDpDo7ei6PsZ');
@@ -127,13 +125,25 @@ class SpotifyController extends Controller
 		return $spotify_user;
 	}
 
-	public function saveArtistFollow($currentUserFollows, $spotify_user)
+	public function saveArtistFollow($currentUserFollowsArtist, $spotify_user)
 	{
-		$new_follow = ($currentUserFollows[0] == false ? '1' : '0'); // returns true
+		$new_follow = ($currentUserFollowsArtist[0] == false ? '1' : '0'); // returns true
 
-		// moet nog associeren met een playlist, mocht deze veranderen, dus zoeken op id en playlist_Id
+		// moet nog associeren met een playlist, mocht deze veranderen, dus firstOrCreate zoeken op id en playlist_Id
 		$artist_follow = ArtistFollow::firstOrCreate(
-			['spotify_user_id' => $spotify_user->id], ['new_follow' => $new_follow]
+			['spotify_user_id' => $spotify_user->id],
+			['new_follow' => $new_follow]
+		);
+	}
+
+	public function savePlaylistFollow($currentUserFollowsPlaylist, $spotify_user)
+	{
+		$new_follow = ($currentUserFollowsPlaylist[0] == false ? '1' : '0'); // returns true
+
+		// moet nog associeren met een playlist, mocht deze veranderen, dus firstOrCreate zoeken op id en playlist_Id
+		$playlist_follow = PlaylistFollow::firstOrCreate(
+			['spotify_user_id' => $spotify_user->id],
+			['new_follow' => $new_follow]
 		);
 	}
 }

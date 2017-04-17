@@ -23,4 +23,9 @@ class SpotifyUser extends Model
     {
     	return $this->hasOne('App\ArtistFollow');
     }
+
+    public function playlistFollows()
+    {
+        return $this->hasMany('App\PlaylistFollow');
+    }
 }
