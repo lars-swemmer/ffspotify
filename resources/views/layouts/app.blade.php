@@ -34,7 +34,7 @@
                         <button class="nav-toggler nav-toggler-sm sidebar-toggler" type="button" data-toggle="collapse" data-target="#nav-toggleable-sm">
                             <span class="sr-only">Toggle nav</span>
                         </button>
-                        <a class="sidebar-brand img-responsive" href="index.html">
+                        <a class="sidebar-brand img-responsive" href="/home">
                             <h1 class="text-muted"><span class="icon icon-database"></span> Fanbase</h1>
                         </a>
                     </div>
@@ -53,6 +53,13 @@
                             </li>
                             <li>
                                 <a href="#">Fan insights</a>
+                            </li>
+
+                            <li class="nav-header">Products</li>
+                            <li>
+                                <a target="_blank" href="/">
+                                    Spotify connect
+                                </a>
                             </li>
 
                             <li class="nav-header">Account</li>
