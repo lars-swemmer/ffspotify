@@ -23,7 +23,7 @@
                 <div class="text-center main-copy">
                     <h1><i class="fa fa-check-circle-o" aria-hidden="true"></i> Thanks for following me!</h1>
                     <h3>You're now the first to hear my brand new music</h3>
-                    <a href="#" class="btn btn-lg btn-success">Listen now on <i class="fa fa-spotify" aria-hidden="true"></i> Spotify</a>
+                    <a href="#" class="btn btn-lg btn-success">Listen now</a>
                 </div>
 
                 <div class="main-phone text-center">
