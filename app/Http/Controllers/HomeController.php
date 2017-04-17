@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\ArtistFollow;
+use App\PlaylistFollow;
+use App\SpotifyUser;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $users = SpotifyUser::take(20)->get();
+        $usersTotal = SpotifyUser::all()->count();
+        $artistFollowers = ArtistFollow::where('new_follow', '1')->count();
+        $playlistFollowers = PlaylistFollow::where('new_follow', '1')->count();
+
+        return view('home', compact('users', 'usersTotal', 'artistFollowers', 'playlistFollowers'));
     }
 }

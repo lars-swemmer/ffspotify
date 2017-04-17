@@ -22,7 +22,9 @@ class SpotifyController extends Controller
 
 		$options = [
 		    'scope' => [
-		        
+		        'user-follow-read',
+		        'user-follow-modify',
+		        'playlist-modify-public',
 		    ],
 		];
 
@@ -130,6 +132,8 @@ class SpotifyController extends Controller
 		return view('spotify.success', compact('albums'));
 	}
 
+
+	// als geen plaatje is kan je geen images[0] doet
 	public function saveCurrentUserProfile($me, $session)
 	{
 		$spotify_user = SpotifyUser::updateOrCreate(
@@ -139,7 +143,7 @@ class SpotifyController extends Controller
 				'followers' => $me->followers->total,
 				'href' => $me->href,
 				'spotify_id' => $me->id,
-				'images' => $me->images[0]->url,
+				'images' => 'test',
 				'type' => $me->type,
 				'uri' => $me->uri,
 				'accessToken' => $session->getAccessToken(),

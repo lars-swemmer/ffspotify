@@ -23,8 +23,8 @@
                 <div class="p-a">
                     <span class="statcard-desc">Page views</span>
                     <h2 class="statcard-number">
-                        12,938
-                    <small class="delta-indicator delta-positive">5%</small>
+                        0
+                    <small class="delta-indicator delta-positive">0%</small>
                     </h2>
                     <hr class="statcard-hr m-b-0">
                 </div>
@@ -36,8 +36,8 @@
                 <div class="p-a">
                     <span class="statcard-desc">Users</span>
                     <h2 class="statcard-number">
-                        758
-                        <small class="delta-indicator delta-negative">1.3%</small>
+                        {{ $usersTotal }}
+                        <small class="delta-indicator delta-negative">100%</small>
                     </h2>
                     <hr class="statcard-hr m-b-0">
                 </div>
@@ -49,8 +49,8 @@
                 <div class="p-a">
                     <span class="statcard-desc">Artist Follows</span>
                     <h2 class="statcard-number">
-                        1,293
-                        <small class="delta-indicator delta-positive">6.75%</small>
+                        {{ $artistFollowers }}
+                        <small class="delta-indicator delta-positive">100%</small>
                     </h2>
                     <hr class="statcard-hr m-b-0">
                 </div>
@@ -62,8 +62,8 @@
                 <div class="p-a">
                     <span class="statcard-desc">Playlist Follows</span>
                     <h2 class="statcard-number">
-                        758
-                        <small class="delta-indicator delta-negative">1.3%</small>
+                        {{ $playlistFollowers }}
+                        <small class="delta-indicator delta-negative">0%</small>
                     </h2>
                     <hr class="statcard-hr m-b-0">
                 </div>
@@ -220,84 +220,29 @@
               <th>Full name</th>
               <th>Username</th>
               <th>Type</th>
-              <th>Date</th>
+              <th>New follower</th>
               <th>Followers</th>
+              <th>Date</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Lars Swemmer</td>
-              <td>larsswemmer</td>
-              <td>user</td>
-              <td>01/01/2015</td>
-              <td>19</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Lars Swemmer</td>
-              <td>larsswemmer</td>
-              <td>user</td>
-              <td>01/01/2015</td>
-              <td>19</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Lars Swemmer</td>
-              <td>larsswemmer</td>
-              <td>user</td>
-              <td>01/01/2015</td>
-              <td>19</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Lars Swemmer</td>
-              <td>larsswemmer</td>
-              <td>user</td>
-              <td>01/01/2015</td>
-              <td>19</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Lars Swemmer</td>
-              <td>larsswemmer</td>
-              <td>user</td>
-              <td>01/01/2015</td>
-              <td>19</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Lars Swemmer</td>
-              <td>larsswemmer</td>
-              <td>user</td>
-              <td>01/01/2015</td>
-              <td>19</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Lars Swemmer</td>
-              <td>larsswemmer</td>
-              <td>user</td>
-              <td>01/01/2015</td>
-              <td>19</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Lars Swemmer</td>
-              <td>larsswemmer</td>
-              <td>user</td>
-              <td>01/01/2015</td>
-              <td>19</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Lars Swemmer</td>
-              <td>larsswemmer</td>
-              <td>user</td>
-              <td>01/01/2015</td>
-              <td>19</td>
-            </tr>
-            
+            @foreach($users as $user)
+              <tr>
+                <td>{{$user->id}}</td>
+                <td>{{$user->display_name}}</td>
+                <td>{{$user->spotify_id}}</td>
+                <td>{{$user->type}}</td>
+                <td>
+                  @if($user->artistFollow->new_follow == '1')
+                    Yes
+                  @else
+                    No
+                  @endif
+                </td>
+                <td>{{$user->followers}}</td>
+                <td>{{$user->updated_at}}</td>
+              </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
