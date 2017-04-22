@@ -86,6 +86,6 @@
   </ul>
 </div> --}}
 
-
+<script src="{{ asset('js/chart_playlists.js') }}"></script>
 
 @endsection
