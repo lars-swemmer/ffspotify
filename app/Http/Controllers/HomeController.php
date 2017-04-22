@@ -33,4 +33,17 @@ class HomeController extends Controller
 
         return view('home', compact('users', 'usersTotal', 'artistFollowers', 'playlistFollowers'));
     }
+
+    /**
+     * Show the fanbase users.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function users()
+    {
+        // pagination inbouwen
+        $users = SpotifyUser::take(20)->get();
+
+        return view('fanbase.users', compact('users'));
+    }
 }

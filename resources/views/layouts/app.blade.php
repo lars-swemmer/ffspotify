@@ -48,14 +48,14 @@
                         </form> --}}
                         <ul class="nav nav-pills nav-stacked">
                             <li class="nav-header">Dashboards</li>
-                            <li class="active">
-                                <a href="index.html">Overview</a>
+                            <li class="{{ Request::is( 'home') ? 'active' : '' }}">
+                                <a href="home">Overview</a>
+                            </li>
+                            <li class="{{ Request::is( 'users') ? 'active' : '' }}">
+                                <a href="users">Users</a>
                             </li>
                             <li>
-                                <a href="#">Users</a>
-                            </li>
-                            <li>
-                                <a href="#">Playlists</a>
+                                <a href="playlists">Playlists</a>
                             </li>
 
                             <li class="nav-header">Products</li>

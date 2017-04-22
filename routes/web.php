@@ -19,3 +19,4 @@ Route::get('/success', 'SpotifyController@success')->name('success');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/users', 'HomeController@users');
