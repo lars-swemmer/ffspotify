@@ -7,7 +7,7 @@
             <h2 class="dashhead-title">Users</h2>
         </div>
 
-        {{-- <div class="btn-toolbar dashhead-toolbar">
+       {{--  <div class="btn-toolbar dashhead-toolbar">
             <div class="btn-toolbar-item input-with-icon">
                 <input type="text" value="01/01/15 - 01/08/15" class="form-control" data-provide="datepicker">
                 <span class="icon icon-calendar"></span>
@@ -33,6 +33,12 @@
     </div>
   </div>
 </div> --}}
+
+<canvas id="graph" style="width: 100%;"></canvas>
+
+<div class="hr-divider m-t-md m-b">
+        <h3 class="hr-divider-content hr-divider-heading">Users</h3>
+    </div>
 
 <div class="table-full">
   <div class="table-responsive">
@@ -88,5 +94,7 @@
     </li>
   </ul>
 </div> --}}
+
+<script src="{{ asset('js/chart_users.js') }}"></script>
 
 @endsection
