@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArtistFollowsTable extends Migration
+class CreateSpotifyPlaylistsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateArtistFollowsTable extends Migration
      */
     public function up()
     {
-        Schema::create('artist_follows', function (Blueprint $table) {
+        Schema::create('spotify_playlists', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('spotify_user_id')->unsigned()->nullable();
-            $table->foreign('spotify_user_id')->references('id')->on('spotify_users');
-            $table->string('new_follow')->nullable();
+
+            $table->string('user_id')->nullable();
+            $table->string('playlist_id')->nullable();
+
             $table->timestamps();
         });
     }
@@ -29,7 +30,6 @@ class CreateArtistFollowsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('artist_follows');
+        Schema::dropIfExists('spotify_playlists');
     }
 }
-

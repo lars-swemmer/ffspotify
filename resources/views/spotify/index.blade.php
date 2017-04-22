@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Spotify index</title>
+        <title>{{ $artist->name }} - {{ config('app.name') }}</title>
         <!-- webpack broken -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13,11 +13,11 @@
     </head>
     <body>
         
-        <div class="container-fluid hero-wrapper">
+        <div class="container-fluid hero-wrapper" style="background-image:url('/images/{{ $artist->image_background }}');">
             <div class="container header-wrapper">
 
                 <div class="text-center main-logo">
-                    <img src="/images/main-logo-white.png">
+                    <img src="/images/{{ $artist->logo }}">
                 </div> <!-- main-logo -->
 
                 <div class="text-center main-copy">
@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="main-phone text-center">
-                    <img src="/images/following-no.png">
+                    <img src="/images/{{ $artist->image_playlist }}">
                 </div>
 
             </div>  <!-- hero-wrapper -->
@@ -37,7 +37,7 @@
             <div class="container footer-content">
                 <div class="text-center latest-releases-copy">
 
-                    <img src="/images/avatar.png">
+                    <img src="/images/{{ $artist->avatar }}">
 
                     <h2>Latest Releases</h2>
                 </div> <!-- latest-releases-copy -->
