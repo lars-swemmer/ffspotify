@@ -138,10 +138,11 @@ class SpotifyController extends Controller
 		$api->setAccessToken($accessToken);
 
 		$artist = SpotifyArtist::first();
+		$playlist = SpotifyPlaylist::first();
 
 		$albums = $api->getArtistAlbums($artist->spotify_id, ['album_type' => 'single', 'limit' => '8']);
 
-		return view('spotify.success', compact('albums', 'artist'));
+		return view('spotify.success', compact('albums', 'artist', 'playlist'));
 	}
 
 	// Custom function

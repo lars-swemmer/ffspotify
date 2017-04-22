@@ -23,7 +23,7 @@
                 <div class="text-center main-copy">
                     <h1><i class="fa fa-check-circle-o" aria-hidden="true"></i> Thanks for following me!</h1>
                     <h3>You're now the first to hear my brand new music</h3>
-                    <a href="#" class="btn btn-lg btn-success">Listen now</a>
+                    <a target="_blank" href="https://open.spotify.com/user/{{ $playlist->user_id }}/playlist/{{ $playlist->playlist_id }}" class="btn btn-lg btn-success">Listen now</a>
                 </div>
 
                 <div class="main-phone text-center">
