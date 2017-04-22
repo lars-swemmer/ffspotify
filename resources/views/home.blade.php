@@ -110,13 +110,13 @@
             @endforeach
           
         </div>
-        {{-- <a href="#" class="btn btn-primary-outline p-x">View all artists</a> --}}
+        <a href="#" class="btn btn-primary-outline p-x">View all artists</a>
       </div>
     </div>
 
-  {{-- <div class="hr-divider m-t-md m-b">
+  <div class="hr-divider m-t-md m-b">
       <h3 class="hr-divider-content hr-divider-heading">Latest fans</h3>
-  </div> --}}
+  </div>
 
     <div class="table-full">
       <div class="table-responsive">

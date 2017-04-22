@@ -57,8 +57,11 @@
                             <li class="{{ Request::is( 'playlists') ? 'active' : '' }}">
                                 <a href="playlists">Playlists</a>
                             </li>
+                            <li class="{{ Request::is( 'top-artists') ? 'active' : '' }}">
+                                <a href="top-artists">Top artists</a>
+                            </li>
                             <li class="{{ Request::is( 'artist') ? 'active' : '' }}">
-                                <a href="artist">Artist</a>
+                                <a href="artist">R3HAB</a>
                             </li>
 
                             <li class="nav-header">Products</li>

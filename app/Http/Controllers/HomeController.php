@@ -78,6 +78,22 @@ class HomeController extends Controller
     }
 
     /**
+     * Show the top artists
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function topArtists()
+    {
+        $topArtists = DB::table('top_artists')
+            ->selectRaw('name, COUNT(*) as count')
+            ->groupBy('name')
+            ->orderBy('count', 'desc')
+            ->get();
+
+        return view('fanbase.top-artists', compact('topArtists'));
+    }
+
+    /**
      * Show the artist spotify analytics.
      *
      * @return \Illuminate\Http\Response

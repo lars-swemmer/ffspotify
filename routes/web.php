@@ -21,4 +21,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::get('/users', 'HomeController@users');
 Route::get('/playlists', 'HomeController@playlists');
+Route::get('/top-artists', 'HomeController@topArtists');
 Route::get('/artist', 'HomeController@artist');
+
