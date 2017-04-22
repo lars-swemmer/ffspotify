@@ -52,7 +52,10 @@
                                 <a href="index.html">Overview</a>
                             </li>
                             <li>
-                                <a href="#">Fan insights</a>
+                                <a href="#">Users</a>
+                            </li>
+                            <li>
+                                <a href="#">Playlists</a>
                             </li>
 
                             <li class="nav-header">Products</li>
