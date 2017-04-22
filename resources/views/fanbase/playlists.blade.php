@@ -46,6 +46,7 @@
       <thead>
         <tr>
           <th>#</th>
+          <th>user_id</th>
           <th>playlist_id</th>
           <th>New Followers</th>
           <th>Added</th>
@@ -55,6 +56,7 @@
         @foreach($playlists as $playlist)
           <tr>
             <td>{{ $playlist->id }}</td>
+            <td>{{ $playlist->user_id }}</td>
             <td>{{ $playlist->playlist_id }}</td>
             <td>{{ $playlist->playlist_follows_count }}</td>
             <td>{{ $playlist->created_at->diffForHumans() }}</td>
