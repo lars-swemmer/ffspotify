@@ -219,7 +219,6 @@
               <th>#</th>
               <th>Full name</th>
               <th>Username</th>
-              <th>Type</th>
               <th>New follower</th>
               <th>Followers</th>
               <th>Date</th>
@@ -231,7 +230,6 @@
                 <td>{{$user->id}}</td>
                 <td>{{$user->display_name}}</td>
                 <td>{{$user->spotify_id}}</td>
-                <td>{{$user->type}}</td>
                 <td>
                   @if($user->artistFollow->new_follow == '1')
                     Yes
@@ -240,7 +238,7 @@
                   @endif
                 </td>
                 <td>{{$user->followers}}</td>
-                <td>{{$user->updated_at}}</td>
+                <td>{{$user->updated_at->diffForHumans()}}</td>
               </tr>
             @endforeach
           </tbody>
