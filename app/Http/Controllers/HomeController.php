@@ -30,7 +30,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = SpotifyUser::take(20)->get();
+        $users = SpotifyUser::take(20)->orderBy('updated_at', 'desc')->get();
         $usersTotal = SpotifyUser::all()->count();
         $artistFollowers = ArtistFollow::where('new_follow', '1')->count();
         $playlistFollowers = PlaylistFollow::where('new_follow', '1')->count();
@@ -59,7 +59,7 @@ class HomeController extends Controller
     public function users()
     {
         // pagination inbouwen
-        $users = SpotifyUser::take(20)->get();
+        $users = SpotifyUser::take(20)->orderBy('updated_at', 'desc')->get();
 
         return view('fanbase.users', compact('users'));
     }
@@ -72,7 +72,7 @@ class HomeController extends Controller
     public function playlists()
     {
         // pagination inbouwen
-        $playlists = SpotifyPlaylist::withCount('playlistFollows')->take(20)->get();
+        $playlists = SpotifyPlaylist::withCount('playlistFollows')->orderBy('updated_at', 'desc')->take(20)->get();
 
         return view('fanbase.playlists', compact('playlists'));
     }
