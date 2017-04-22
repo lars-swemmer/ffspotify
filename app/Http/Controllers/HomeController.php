@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ArtistFollow;
 use App\PlaylistFollow;
+use App\SpotifyPlaylist;
 use App\SpotifyUser;
 use Illuminate\Http\Request;
 
@@ -45,5 +46,18 @@ class HomeController extends Controller
         $users = SpotifyUser::take(20)->get();
 
         return view('fanbase.users', compact('users'));
+    }
+
+    /**
+     * Show the fanbase playlists.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function playlists()
+    {
+        // pagination inbouwen
+        $playlists = SpotifyPlaylist::withCount('playlistFollows')->take(20)->get();
+
+        return view('fanbase.playlists', compact('playlists'));
     }
 }

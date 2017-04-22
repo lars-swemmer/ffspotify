@@ -16,4 +16,9 @@ class PlaylistFollow extends Model
     {
     	return $this->belongsTo('App\SpotifyUser');
     }
+
+    public function spotifyPlaylist()
+    {
+    	return $this->belongsTo('App\SpotifyPlaylist');
+    }
 }

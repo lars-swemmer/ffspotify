@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Fanbase') }}</title>
+    <title>Fanbase</title>
 
     <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" rel="stylesheet">
 
@@ -54,7 +54,7 @@
                             <li class="{{ Request::is( 'users') ? 'active' : '' }}">
                                 <a href="users">Users</a>
                             </li>
-                            <li>
+                            <li class="{{ Request::is( 'playlists') ? 'active' : '' }}">
                                 <a href="playlists">Playlists</a>
                             </li>
 
