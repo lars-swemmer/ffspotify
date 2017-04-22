@@ -110,7 +110,7 @@
             @endforeach
           
         </div>
-        <a href="#" class="btn btn-primary-outline p-x">View all artists</a>
+        <a href="top-artists" class="btn btn-primary-outline p-x">View all artists</a>
       </div>
     </div>
 
@@ -126,7 +126,8 @@
               <th>#</th>
               <th>Full name</th>
               <th>Username</th>
-              <th>New follower</th>
+              <th>Country</th>
+              <th>New follow</th>
               <th>Followers</th>
               <th>Date</th>
             </tr>
@@ -137,6 +138,7 @@
                 <td>{{$user->id}}</td>
                 <td>{{$user->display_name}}</td>
                 <td>{{$user->spotify_id}}</td>
+                <td>{{$user->country}}</td>
                 <td>
                   @if($user->artistFollow->new_follow == '1')
                     Yes

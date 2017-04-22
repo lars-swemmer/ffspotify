@@ -48,6 +48,7 @@
               <th>#</th>
               <th>Full name</th>
               <th>Username</th>
+              <th>Country</th>
               <th>New follower</th>
               <th>Followers</th>
               <th>Date</th>
@@ -59,6 +60,7 @@
             <td>{{$user->id}}</td>
             <td>{{$user->display_name}}</td>
             <td>{{$user->spotify_id}}</td>
+            <td>{{$user->country}}</td>
             <td>
               @if($user->artistFollow->new_follow == '1')
                 Yes

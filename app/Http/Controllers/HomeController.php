@@ -46,6 +46,7 @@ class HomeController extends Controller
             ->selectRaw('country, COUNT(*) as count')
             ->groupBy('country')
             ->orderBy('count', 'desc')
+            ->take(10)
             ->get();
 
         return view('home', compact('users', 'usersTotal', 'artistFollowers', 'playlistFollowers', 'topArtists', 'topCountries'));
