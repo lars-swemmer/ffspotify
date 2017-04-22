@@ -4,7 +4,7 @@
     <div class="dashhead">
         <div class="dashhead-titles">
             <h6 class="dashhead-subtitle">Dashboards</h6>
-            <h2 class="dashhead-title">Users</h2>
+            <h2 class="dashhead-title">Playlists</h2>
         </div>
 
         {{-- <div class="btn-toolbar dashhead-toolbar">
@@ -34,6 +34,12 @@
   </div>
 </div> --}}
 
+<canvas id="graph" style="width: 100%;"></canvas>
+
+<div class="hr-divider m-t-md m-b">
+        <h3 class="hr-divider-content hr-divider-heading">Playlists</h3>
+    </div>
+
 <div class="table-full">
   <div class="table-responsive">
     <table class="table" data-sort="table">
@@ -42,6 +48,7 @@
           <th>#</th>
           <th>playlist_id</th>
           <th>New Followers</th>
+          <th>Added</th>
         </tr>
       </thead>
       <tbody>
@@ -50,6 +57,7 @@
             <td>{{ $playlist->id }}</td>
             <td>{{ $playlist->playlist_id }}</td>
             <td>{{ $playlist->playlist_follows_count }}</td>
+            <td>{{ $playlist->created_at->diffForHumans() }}</td>
           </tr>
         @endforeach
       </tbody>
@@ -76,5 +84,7 @@
     </li>
   </ul>
 </div> --}}
+
+
 
 @endsection
