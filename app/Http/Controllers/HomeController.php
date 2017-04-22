@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ArtistFollow;
 use App\PlaylistFollow;
+use App\SpotifyArtist;
 use App\SpotifyPlaylist;
 use App\SpotifyUser;
 use Illuminate\Http\Request;
@@ -59,5 +60,17 @@ class HomeController extends Controller
         $playlists = SpotifyPlaylist::withCount('playlistFollows')->take(20)->get();
 
         return view('fanbase.playlists', compact('playlists'));
+    }
+
+    /**
+     * Show the artist spotify analytics.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function artist()
+    {
+        $artist = SpotifyArtist::first();
+
+        return view('fanbase.artist', compact('artist'));
     }
 }

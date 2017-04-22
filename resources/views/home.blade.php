@@ -72,7 +72,7 @@
         </div>
     </div> <!-- /statcards -->
 
-   {{--  <div class="hr-divider m-t-md m-b">
+    <div class="hr-divider m-t-md m-b">
       <h3 class="hr-divider-content hr-divider-heading">Quick stats</h3>
     </div>
 
@@ -149,7 +149,7 @@
       <div class="col-md-6 m-b-md">
         <div class="list-group">
           <h4 class="list-group-header">
-            Favorite artists
+            Top artists
           </h4>
           
             <a class="list-group-item" href="#">
@@ -205,11 +205,11 @@
         </div>
         <a href="#" class="btn btn-primary-outline p-x">View all artists</a>
       </div>
-    </div> --}}
-
-    <div class="hr-divider m-t-md m-b">
-        <h3 class="hr-divider-content hr-divider-heading">Latest fans</h3>
     </div>
+
+  {{-- <div class="hr-divider m-t-md m-b">
+      <h3 class="hr-divider-content hr-divider-heading">Latest fans</h3>
+  </div> --}}
 
     <div class="table-full">
       <div class="table-responsive">

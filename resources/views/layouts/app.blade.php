@@ -57,6 +57,9 @@
                             <li class="{{ Request::is( 'playlists') ? 'active' : '' }}">
                                 <a href="playlists">Playlists</a>
                             </li>
+                            <li class="{{ Request::is( 'artist') ? 'active' : '' }}">
+                                <a href="artist">Artist</a>
+                            </li>
 
                             <li class="nav-header">Products</li>
                             <li>
