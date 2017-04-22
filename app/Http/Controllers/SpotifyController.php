@@ -40,7 +40,7 @@ class SpotifyController extends Controller
 		$api = new SpotifyWebAPI\SpotifyWebAPI();
 		$api->setAccessToken($accessToken);
 
-		$artist = SpotifyArtist::first();
+		$artist = SpotifyArtist::orderBy('created_at', 'desc')->first();
 
 		$albums = $api->getArtistAlbums($artist->spotify_id, ['album_type' => 'single', 'limit' => '8']);
 
@@ -61,8 +61,8 @@ class SpotifyController extends Controller
 
 		if ($code != '') {
 
-			$artist = SpotifyArtist::first();
-			$playlist = SpotifyPlaylist::first();
+			$artist = SpotifyArtist::orderBy('created_at', 'desc')->first();
+			$playlist = SpotifyPlaylist::orderBy('created_at', 'desc')->first();
 
 			// Spotify API setup
 			$session = new SpotifyWebAPI\Session(env('SPOTIFY_CLIENT_ID'), env('SPOTIFY_CLIENT_SECRET'), env('SPOTIFY_REDIRECT_URI'));
@@ -137,8 +137,8 @@ class SpotifyController extends Controller
 		$api = new SpotifyWebAPI\SpotifyWebAPI();
 		$api->setAccessToken($accessToken);
 
-		$artist = SpotifyArtist::first();
-		$playlist = SpotifyPlaylist::first();
+		$artist = SpotifyArtist::orderBy('created_at', 'desc')->first();
+		$playlist = SpotifyPlaylist::orderBy('created_at', 'desc')->first();
 
 		$albums = $api->getArtistAlbums($artist->spotify_id, ['album_type' => 'single', 'limit' => '8']);
 
