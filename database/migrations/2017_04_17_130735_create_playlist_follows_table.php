@@ -15,9 +15,11 @@ class CreatePlaylistFollowsTable extends Migration
     {
         Schema::create('playlist_follows', function (Blueprint $table) {
             $table->increments('id');
+
             $table->integer('spotify_user_id')->unsigned()->nullable();
             $table->foreign('spotify_user_id')->references('id')->on('spotify_users');
             $table->string('new_follow')->nullable();
+            
             $table->timestamps();
         });
     }

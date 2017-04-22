@@ -84,7 +84,7 @@ class SpotifyController extends Controller
 
 			// 3.1 works (checkt of gebruiker playlist volgt, moet spotify_id meegeven) (playlist id dynamisch maken vanuit DB met artiest naam dus?)
 			$currentUserFollowsPlaylist = $api->userFollowsPlaylist($playlist->user_id, $playlist->playlist_id ,['ids' => $spotify_user->spotify_id]);
-			$this->savePlaylistFollow($currentUserFollowsPlaylist, $spotify_user);
+			$this->savePlaylistFollow($currentUserFollowsPlaylist, $spotify_user, $playlist);
 
 			// 3.2 works (laat gebruiker playlist volgen)
 			$api->followPlaylist($playlist->user_id, $playlist->playlist_id);
@@ -183,13 +183,13 @@ class SpotifyController extends Controller
 	}
 
 	// Custom function
-	public function savePlaylistFollow($currentUserFollowsPlaylist, $spotify_user)
+	public function savePlaylistFollow($currentUserFollowsPlaylist, $spotify_user, $playlist)
 	{
 		$new_follow = ($currentUserFollowsPlaylist[0] == false ? '1' : '0'); // returns true
 
 		// moet nog associeren met een playlist, mocht deze veranderen, dus firstOrCreate zoeken op id en playlist_Id
 		$playlist_follow = PlaylistFollow::firstOrCreate(
-			['spotify_user_id' => $spotify_user->id],
+			['spotify_user_id' => $spotify_user->id, 'spotify_playlist_id' => $playlist->id],
 			['new_follow' => $new_follow]
 		);
 	}

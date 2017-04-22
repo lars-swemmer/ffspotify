@@ -8,6 +8,7 @@ class PlaylistFollow extends Model
 {
     protected $fillable = [
     	'spotify_user_id',
+    	'spotify_playlist_id',
     	'new_follow',
     ];
 
