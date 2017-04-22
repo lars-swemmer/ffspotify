@@ -15,6 +15,7 @@ class SpotifyUser extends Model
     	'images',
     	'type',
     	'uri',
+        'country',
     	'accessToken',
     	'refreshToken',
     ];

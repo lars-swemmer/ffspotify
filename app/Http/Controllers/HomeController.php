@@ -35,7 +35,6 @@ class HomeController extends Controller
         $artistFollowers = ArtistFollow::where('new_follow', '1')->count();
         $playlistFollowers = PlaylistFollow::where('new_follow', '1')->count();
 
-        // $topArtists = TopArtist::all();
         $topArtists = DB::table('top_artists')
             ->selectRaw('name, COUNT(*) as count')
             ->groupBy('name')
@@ -43,7 +42,13 @@ class HomeController extends Controller
             ->take(10)
             ->get();
 
-        return view('home', compact('users', 'usersTotal', 'artistFollowers', 'playlistFollowers', 'topArtists'));
+        $topCountries = DB::table('spotify_users')
+            ->selectRaw('country, COUNT(*) as count')
+            ->groupBy('country')
+            ->orderBy('count', 'desc')
+            ->get();
+
+        return view('home', compact('users', 'usersTotal', 'artistFollowers', 'playlistFollowers', 'topArtists', 'topCountries'));
     }
 
     /**

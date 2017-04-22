@@ -83,11 +83,13 @@
             Countries
           </h4>
           
-            <a class="list-group-item" href="#">
-              <span class="list-group-progress" style="width: 62.4%;"></span>
-              <span class="pull-right text-muted">62.4%</span>
-              United States
-            </a>
+            @foreach($topCountries as $country)
+              <a class="list-group-item" href="#">
+                <span class="list-group-progress" style="width: 62.4%;"></span>
+                <span class="pull-right text-muted">{{ $country->count }}</span>
+                {{ $country->country }}
+              </a>
+            @endforeach
           
         </div>
         {{-- <a href="#" class="btn btn-primary-outline p-x">View all countries</a> --}}
