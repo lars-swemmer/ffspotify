@@ -7,12 +7,9 @@
             <h2 class="dashhead-title">Playlists</h2>
         </div>
 
-        {{-- <div class="btn-toolbar dashhead-toolbar">
-            <div class="btn-toolbar-item input-with-icon">
-                <input type="text" value="01/01/15 - 01/08/15" class="form-control" data-provide="datepicker">
-                <span class="icon icon-calendar"></span>
-            </div>
-        </div> --}}
+        <div class="btn-toolbar dashhead-toolbar">
+            <button type="button" class="btn btn-pill btn-primary"><span class="icon icon-plus"></span> New playlist</button>
+        </div>
     </div> <!-- dashhead -->
 
    {{--  <div class="flextable table-actions">
@@ -48,8 +45,9 @@
           <th>#</th>
           <th>user_id</th>
           <th>playlist_id</th>
-          <th>New Followers</th>
+          <th>New followers</th>
           <th>Added</th>
+          <th>Active</th>
         </tr>
       </thead>
       <tbody>
@@ -60,6 +58,7 @@
             <td>{{ $playlist->playlist_id }}</td>
             <td>{{ $playlist->playlist_follows_count }}</td>
             <td>{{ $playlist->created_at->diffForHumans() }}</td>
+            <td><span class="icon icon-check"></span></td>
           </tr>
         @endforeach
       </tbody>
