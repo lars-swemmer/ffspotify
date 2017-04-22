@@ -7,7 +7,9 @@ use App\PlaylistFollow;
 use App\SpotifyArtist;
 use App\SpotifyPlaylist;
 use App\SpotifyUser;
+use App\TopArtist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -33,7 +35,15 @@ class HomeController extends Controller
         $artistFollowers = ArtistFollow::where('new_follow', '1')->count();
         $playlistFollowers = PlaylistFollow::where('new_follow', '1')->count();
 
-        return view('home', compact('users', 'usersTotal', 'artistFollowers', 'playlistFollowers'));
+        // $topArtists = TopArtist::all();
+        $topArtists = DB::table('top_artists')
+            ->selectRaw('name, COUNT(*) as count')
+            ->groupBy('name')
+            ->orderBy('count', 'desc')
+            ->take(10)
+            ->get();
+
+        return view('home', compact('users', 'usersTotal', 'artistFollowers', 'playlistFollowers', 'topArtists'));
     }
 
     /**

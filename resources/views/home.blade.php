@@ -89,62 +89,8 @@
               United States
             </a>
           
-            <a class="list-group-item" href="#">
-              <span class="list-group-progress" style="width: 15.0%;"></span>
-              <span class="pull-right text-muted">15.0%</span>
-              India
-            </a>
-          
-            <a class="list-group-item" href="#">
-              <span class="list-group-progress" style="width: 5.0%;"></span>
-              <span class="pull-right text-muted">5.0%</span>
-              United Kingdom
-            </a>
-          
-            <a class="list-group-item" href="#">
-              <span class="list-group-progress" style="width: 5.0%;"></span>
-              <span class="pull-right text-muted">5.0%</span>
-              Canada
-            </a>
-          
-            <a class="list-group-item" href="#">
-              <span class="list-group-progress" style="width: 4.5%;"></span>
-              <span class="pull-right text-muted">4.5%</span>
-              Russia
-            </a>
-          
-            <a class="list-group-item" href="#">
-              <span class="list-group-progress" style="width: 2.3%;"></span>
-              <span class="pull-right text-muted">2.3%</span>
-              Mexico
-            </a>
-          
-            <a class="list-group-item" href="#">
-              <span class="list-group-progress" style="width: 1.7%;"></span>
-              <span class="pull-right text-muted">1.7%</span>
-              Spain
-            </a>
-          
-            <a class="list-group-item" href="#">
-              <span class="list-group-progress" style="width: 1.5%;"></span>
-              <span class="pull-right text-muted">1.5%</span>
-              France
-            </a>
-          
-            <a class="list-group-item" href="#">
-              <span class="list-group-progress" style="width: 1.4%;"></span>
-              <span class="pull-right text-muted">1.4%</span>
-              South Africa
-            </a>
-          
-            <a class="list-group-item" href="#">
-              <span class="list-group-progress" style="width: 1.2%;"></span>
-              <span class="pull-right text-muted">1.2%</span>
-              Japan
-            </a>
-          
         </div>
-        <a href="#" class="btn btn-primary-outline p-x">View all countries</a>
+        {{-- <a href="#" class="btn btn-primary-outline p-x">View all countries</a> --}}
       </div>
       <div class="col-md-6 m-b-md">
         <div class="list-group">
@@ -152,58 +98,17 @@
             Top artists
           </h4>
           
+            @foreach($topArtists as $topArtist)
+
             <a class="list-group-item" href="#">
-              <span class="pull-right text-muted">3,929,481</span>
-              Avicii
+              <span class="pull-right text-muted">{{ $topArtist->count }}</span>
+              {{ $topArtist->name }}
             </a>
-          
-            <a class="list-group-item" href="#">
-              <span class="pull-right text-muted">1,143,393</span>
-              Moderat
-            </a>
-          
-            <a class="list-group-item" href="#">
-              <span class="pull-right text-muted">938,287</span>
-              The Xx
-            </a>
-          
-            <a class="list-group-item" href="#">
-              <span class="pull-right text-muted">749,393</span>
-              /features/something
-            </a>
-          
-            <a class="list-group-item" href="#">
-              <span class="pull-right text-muted">695,912</span>
-              /features/another-thing
-            </a>
-          
-            <a class="list-group-item" href="#">
-              <span class="pull-right text-muted">501,938</span>
-              /users/username
-            </a>
-          
-            <a class="list-group-item" href="#">
-              <span class="pull-right text-muted">392,842</span>
-              /page-title
-            </a>
-          
-            <a class="list-group-item" href="#">
-              <span class="pull-right text-muted">298,183</span>
-              /some/page-slug
-            </a>
-          
-            <a class="list-group-item" href="#">
-              <span class="pull-right text-muted">193,129</span>
-              /another/directory/and/page-title
-            </a>
-          
-            <a class="list-group-item" href="#">
-              <span class="pull-right text-muted">93,382</span>
-              /one-more/page/directory/file-name
-            </a>
+
+            @endforeach
           
         </div>
-        <a href="#" class="btn btn-primary-outline p-x">View all artists</a>
+        {{-- <a href="#" class="btn btn-primary-outline p-x">View all artists</a> --}}
       </div>
     </div>
 

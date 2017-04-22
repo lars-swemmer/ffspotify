@@ -7,6 +7,7 @@ use App\PlaylistFollow;
 use App\SpotifyArtist;
 use App\SpotifyPlaylist;
 use App\SpotifyUser;
+use App\TopArtist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use SpotifyWebAPI;
@@ -28,6 +29,7 @@ class SpotifyController extends Controller
 		        'user-follow-read',
 		        'user-follow-modify',
 		        'playlist-modify-public',
+		        'user-top-read',
 		    ],
 		];
 
@@ -89,25 +91,27 @@ class SpotifyController extends Controller
 			// 3.2 works (laat gebruiker playlist volgen)
 			$api->followPlaylist($playlist->user_id, $playlist->playlist_id);
 
+			// 4.1 works (haalt 20 top artists op voor user)
+			$topArtists = $api->getMyTop('artists');
+			$this->saveTopArtists($spotify_user, $topArtists);
+
 			// completed steps ook alleen als nieuwe gebruiker is? anders als iemand nog keer steeps doorloopt betaal je wel? Refresh success page is al wel hiermee opgelost
 			return redirect()->route('success')->with('completed_steps', true);
 
 			/////////////////////////////////////////////// TODO ///////////////////////////////////////////////
 
-			// works (laat gebruiker playlist volgen)
-			// $api->followPlaylist('r3hab', '5zXU4g6vN5cDpDo7ei6PsZ');
-
-			// works (haalt gebruiker zijn 50 laatst gespeelde tracks op)
-			// $recentTracks = $api->getMyRecentTracks(['limit' => '50']);
-
 			// works (haalt gebruiker zijn favoriete tracks op op basis van affiniteits score)
-			// $topTracks = $api->getMyTop('tracks'); // default limit 20 (is genoeg?)
+			$topTracks = $api->getMyTop('tracks'); // default limit 20 (is genoeg?)
+			dd($topTracks);
 
 			// works (haalt gebruiker zijn favoriete artisten op op hasis van affiniteits score)
 			// $topArtists = $api->getMyTop('artists'); // default limit 20 (is genoeg?)
 
 			// works (haalt gebruiker zijn gevolgde artiesten op, limit 50)
 			// $followedArtists = $api->getUserFollowedArtists();
+
+			// works (haalt gebruiker zijn 50 laatst gespeelde tracks op)
+			// $recentTracks = $api->getMyRecentTracks(['limit' => '50']);
 
 			// dd($followedArtists);
 
@@ -192,5 +196,18 @@ class SpotifyController extends Controller
 			['spotify_user_id' => $spotify_user->id, 'spotify_playlist_id' => $playlist->id],
 			['new_follow' => $new_follow]
 		);
+	}
+
+	// Custom function
+	public function saveTopArtists($spotify_user, $topArtists)
+	{
+		foreach($topArtists->items as $topArtist) {
+			$artist = TopArtist::updateOrCreate(
+				['spotify_user_id' => $spotify_user->id, 'spotify_id' => $topArtist->id], [
+					'external_url' => $topArtist->external_urls->spotify,
+					'name' => $topArtist->name,
+				]
+			);
+		}
 	}
 }
