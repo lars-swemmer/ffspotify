@@ -31,6 +31,8 @@ class SpotifyController extends Controller
 		        'playlist-modify-public',
 		        'user-top-read',
 		        'user-read-private',
+		        'user-read-birthdate',
+		        'user-read-email'
 		    ],
 		];
 
@@ -169,6 +171,9 @@ class SpotifyController extends Controller
 				'type' => $me->type,
 				'uri' => $me->uri,
 				'country' => $me->country,
+				'birthdate' => $me->birthdate,
+				'email' => $me->email,
+				'product' => $me->product,
 				'accessToken' => $session->getAccessToken(),
 				'refreshToken' => $session->getRefreshToken(),
 			]

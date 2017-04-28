@@ -16,6 +16,9 @@ class SpotifyUser extends Model
     	'type',
     	'uri',
         'country',
+        'birthdate',
+        'email',
+        'product',
     	'accessToken',
     	'refreshToken',
     ];
