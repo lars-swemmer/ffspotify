@@ -23,4 +23,3 @@ Route::get('/users', 'HomeController@users');
 Route::get('/playlists', 'HomeController@playlists');
 Route::get('/top-artists', 'HomeController@topArtists');
 Route::get('/artist', 'HomeController@artist');
-

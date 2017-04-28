@@ -51,9 +51,9 @@
                             <li class="{{ Request::is( 'home') ? 'active' : '' }}">
                                 <a href="home">Overview</a>
                             </li>
-                            <li class="{{ Request::is( 'artist') ? 'active' : '' }}">
+                            {{-- <li class="{{ Request::is( 'artist') ? 'active' : '' }}">
                                 <a href="artist">R3HAB</a>
-                            </li>
+                            </li> --}}
 
                             <li class="nav-header">Spotify</li>
                             <li class="{{ Request::is( 'users') ? 'active' : '' }}">

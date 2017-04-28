@@ -24,7 +24,7 @@
                     <span class="statcard-desc">Page views</span>
                     <h2 class="statcard-number">
                         0
-                    {{-- <small class="delta-indicator delta-positive">0%</small> --}}
+                        <small class="delta-indicator delta-positive">0%</small>
                     </h2>
                     <hr class="statcard-hr m-b-0">
                 </div>
@@ -96,7 +96,7 @@
           </h4>
           
             @foreach($topCountries as $country)
-              <a class="list-group-item" href="#">
+              <a class="list-group-item">
                 {{-- <span class="list-group-progress" style="width: 62.4%;"></span> --}}
                 <span class="list-group-progress"></span>
                 <span class="pull-right text-muted">{{ $country->count }}</span>
@@ -115,7 +115,7 @@
           
             @foreach($topArtists as $topArtist)
 
-            <a class="list-group-item" href="#">
+            <a class="list-group-item">
               <span class="pull-right text-muted">{{ $topArtist->count }}</span>
               {{ $topArtist->name }}
             </a>
