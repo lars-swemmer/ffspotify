@@ -128,7 +128,7 @@
               <th>Username</th>
               <th>Email</th>
               <th>Product</th>
-              <th>Birthdate</th>
+              <th>Age</th>
               <th>Country</th>
               <th>Added</th>
               <th>&nbsp;</th>
@@ -141,7 +141,7 @@
                 <td>{{$user->spotify_id}}</td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->product}}</td>
-                <td>{{$user->birthdate}}</td>
+                <td>{{Carbon\Carbon::parse($user->birthdate)->age}}</td>
                 <td>{{$user->country}}</td>
                 <td>{{$user->updated_at->diffForHumans()}}</td>
                 <td>
