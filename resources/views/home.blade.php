@@ -125,36 +125,32 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Full name</th>
               <th>Username</th>
+              <th>Email</th>
+              <th>Product</th>
+              <th>Birthdate</th>
               <th>Country</th>
-              <th>New follow</th>
-              <th>Followers</th>
-              <th>Date</th>
+              <th>Added</th>
+              <th>&nbsp;</th>
             </tr>
           </thead>
           <tbody>
             @foreach($users as $user)
               <tr>
                 <td>{{$user->id}}</td>
-                <td>
-                  @if(!empty($user->display_name))
-                    {{$user->display_name}}
-                  @else
-                    -
-                  @endif
-                </td>
                 <td>{{$user->spotify_id}}</td>
+                <td>{{$user->email}}</td>
+                <td>{{$user->product}}</td>
+                <td>{{$user->birthdate}}</td>
                 <td>{{$user->country}}</td>
+                <td>{{$user->updated_at->diffForHumans()}}</td>
                 <td>
-                  @if($user->artistFollow->new_follow == '1')
-                    Yes
+                  @if(!empty($user->playlistFollows[0]->new_follow) && $user->playlistFollows[0]->new_follow == 1)
+                    <span class="icon icon-add-user text-success"></span>
                   @else
-                    No
+                    &nbsp;
                   @endif
                 </td>
-                <td>{{$user->followers}}</td>
-                <td>{{$user->updated_at->diffForHumans()}}</td>
               </tr>
             @endforeach
           </tbody>

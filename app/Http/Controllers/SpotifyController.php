@@ -87,7 +87,7 @@ class SpotifyController extends Controller
 			// 2.2 works (laat gebruiker artiest volgen) (artist id dynamisch maken vanuit DB)
 			$api->followArtistsOrUsers('artist', $artist->spotify_id);
 
-			// 3.1 works (checkt of gebruiker playlist volgt, moet spotify_id meegeven) (playlist id dynamisch maken vanuit DB met artiest naam dus?)
+			// 3.1 works (checkt of gebruiker playlist volgt, moet spotify_id meegeven) (playlist id dynamisch maken vanuit DB met artiest 	naam dus?)
 			$currentUserFollowsPlaylist = $api->userFollowsPlaylist($playlist->user_id, $playlist->playlist_id ,['ids' => $spotify_user->spotify_id]);
 			$this->savePlaylistFollow($currentUserFollowsPlaylist, $spotify_user, $playlist);
 
@@ -98,29 +98,9 @@ class SpotifyController extends Controller
 			$topArtists = $api->getMyTop('artists');
 			$this->saveTopArtists($spotify_user, $topArtists);
 
+
 			// completed steps ook alleen als nieuwe gebruiker is? anders als iemand nog keer steeps doorloopt betaal je wel? Refresh success page is al wel hiermee opgelost
 			return redirect()->route('success')->with('completed_steps', true);
-
-			/////////////////////////////////////////////// TODO ///////////////////////////////////////////////
-
-			// works (haalt gebruiker zijn favoriete tracks op op basis van affiniteits score)
-			$topTracks = $api->getMyTop('tracks'); // default limit 20 (is genoeg?)
-			dd($topTracks);
-
-			// works (haalt gebruiker zijn favoriete artisten op op hasis van affiniteits score)
-			// $topArtists = $api->getMyTop('artists'); // default limit 20 (is genoeg?)
-
-			// works (haalt gebruiker zijn gevolgde artiesten op, limit 50)
-			// $followedArtists = $api->getUserFollowedArtists();
-
-			// works (haalt gebruiker zijn 50 laatst gespeelde tracks op)
-			// $recentTracks = $api->getMyRecentTracks(['limit' => '50']);
-
-			// dd($followedArtists);
-
-			/////////////////////////////////////////////// END TODO ///////////////////////////////////////////
-
-			return 'Succesfull connection';
 	    }
 
 	    return 'Something strange happend, please try to connect again. Response code:' .$code;
