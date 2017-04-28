@@ -160,7 +160,7 @@
           </tbody>
         </table>
       </div>
-      <a href="#" class="btn btn-primary-outline p-x">View all users</a>
+      <a href="users" class="btn btn-primary-outline p-x">View all users</a>
 
     </div>
 
