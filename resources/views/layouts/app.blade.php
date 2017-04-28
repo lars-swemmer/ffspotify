@@ -57,7 +57,7 @@
 
                             <li class="nav-header">Spotify</li>
                             <li class="{{ Request::is( 'users') ? 'active' : '' }}">
-                                <a href="users">Users</a>
+                                <a href="users">Fans</a>
                             </li>
                             <li class="{{ Request::is( 'playlists') ? 'active' : '' }}">
                                 <a href="playlists">Playlists</a>

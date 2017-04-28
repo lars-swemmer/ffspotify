@@ -34,7 +34,7 @@
         <div class="col-sm-6 col-lg-3 m-b">
             <div class="statcard statcard-primary">
                 <div class="p-a">
-                    <span class="statcard-desc">Users</span>
+                    <span class="statcard-desc">Fans</span>
                     <h2 class="statcard-number">
                         {{ $usersTotal }}
                         @if($usersToday > '0')

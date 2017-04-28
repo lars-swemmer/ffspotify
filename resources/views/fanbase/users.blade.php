@@ -3,8 +3,8 @@
 @section('content')
     <div class="dashhead">
         <div class="dashhead-titles">
-            <h6 class="dashhead-subtitle">Dashboards</h6>
-            <h2 class="dashhead-title">Users</h2>
+            <h6 class="dashhead-subtitle">Spotify</h6>
+            <h2 class="dashhead-title">Fans <small class="text-muted">&middot; {{ Carbon\Carbon::today()->format('d M Y') }}</small></h2>
         </div>
 
        {{--  <div class="btn-toolbar dashhead-toolbar">
@@ -13,6 +13,9 @@
                 <span class="icon icon-calendar"></span>
             </div>
         </div> --}}
+        <div class="btn-toolbar dashhead-toolbar">
+            <button type="button" class="btn btn-pill btn-primary"><span class="icon icon-export"></span> Export users</button>
+        </div>
     </div> <!-- dashhead -->
 
    {{--  <div class="flextable table-actions">
@@ -34,10 +37,50 @@
   </div>
 </div> --}}
 
+<script type="text/javascript">
+  window.onload = function() {
+
+    var ctx = document.getElementById("graph");
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [
+              // // dit moet dynamisch kunnen met foreach
+              "{{ Carbon\Carbon::today()->subHours(144)->format('D d M') }}",
+              "{{ Carbon\Carbon::today()->subHours(120)->format('D d M') }}",
+              "{{ Carbon\Carbon::today()->subHours(96)->format('D d M') }}",
+              "{{ Carbon\Carbon::today()->subHours(72)->format('D d M') }}",
+              "{{ Carbon\Carbon::today()->subHours(48)->format('D d M') }}",
+              "{{ Carbon\Carbon::today()->subHours(24)->format('D d M') }}",
+              "{{ Carbon\Carbon::today()->format('D d M') }}",
+            ],
+            datasets: [{
+                label: 'Fans',
+                // dit moet dynamisch worden
+                data: [0, 0, 0, 0, 0, {{ $usersYesterday }}, {{ $usersToday }}],
+                backgroundColor: "rgba(75,192,192,0.4)",
+                borderColor: "rgba(75,192,192,1)",
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+
+  }
+</script>
+
 <canvas id="graph" style="width: 100%;"></canvas>
 
 <div class="hr-divider m-t-md m-b">
-        <h3 class="hr-divider-content hr-divider-heading">Users</h3>
+        <h3 class="hr-divider-content hr-divider-heading">Latest fans</h3>
     </div>
 
 <div class="table-full">
@@ -79,7 +122,7 @@
   </div>
 </div>
 
-{{-- <div class="text-center">
+<div class="text-center">
   <ul class="pagination">
     <li>
       <a href="#" aria-label="Previous">
@@ -97,8 +140,8 @@
       </a>
     </li>
   </ul>
-</div> --}}
+</div>
 
-<script src="{{ asset('js/chart_users.js') }}"></script>
+{{-- <script src="{{ asset('js/chart_users.js') }}"></script> --}}
 
 @endsection
