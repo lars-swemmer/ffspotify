@@ -19,12 +19,12 @@
 
     <div class="row statcards">
         <div class="col-sm-6 col-lg-3 m-b">
-            <div class="statcard statcard-success">
+            <div class="statcard statcard-primary">
                 <div class="p-a">
                     <span class="statcard-desc">Page views</span>
                     <h2 class="statcard-number">
                         0
-                    <small class="delta-indicator delta-positive">0%</small>
+                    {{-- <small class="delta-indicator delta-positive">0%</small> --}}
                     </h2>
                     <hr class="statcard-hr m-b-0">
                 </div>
@@ -32,12 +32,12 @@
             </div>
         </div>
         <div class="col-sm-6 col-lg-3 m-b">
-            <div class="statcard statcard-danger">
+            <div class="statcard statcard-primary">
                 <div class="p-a">
                     <span class="statcard-desc">Users</span>
                     <h2 class="statcard-number">
                         {{ $usersTotal }}
-                        <small class="delta-indicator delta-negative">100%</small>
+                        {{-- <small class="delta-indicator delta-negative">0%</small> --}}
                     </h2>
                     <hr class="statcard-hr m-b-0">
                 </div>
@@ -45,12 +45,12 @@
             </div>
         </div>
         <div class="col-sm-6 col-lg-3 m-b">
-            <div class="statcard statcard-info">
+            <div class="statcard statcard-primary">
                 <div class="p-a">
                     <span class="statcard-desc">Artist Follows</span>
                     <h2 class="statcard-number">
                         {{ $artistFollowers }}
-                        <small class="delta-indicator delta-positive">100%</small>
+                        {{-- <small class="delta-indicator delta-positive">0%</small> --}}
                     </h2>
                     <hr class="statcard-hr m-b-0">
                 </div>
@@ -58,12 +58,12 @@
             </div>
         </div>
         <div class="col-sm-6 col-lg-3 m-b">
-            <div class="statcard statcard-warning">
+            <div class="statcard statcard-primary">
                 <div class="p-a">
                     <span class="statcard-desc">Playlist Follows</span>
                     <h2 class="statcard-number">
                         {{ $playlistFollowers }}
-                        <small class="delta-indicator delta-negative">0%</small>
+                        {{-- <small class="delta-indicator delta-negative">0%</small> --}}
                     </h2>
                     <hr class="statcard-hr m-b-0">
                 </div>
@@ -80,19 +80,20 @@
       <div class="col-md-6 m-b-md">
         <div class="list-group">
           <h4 class="list-group-header">
-            Countries
+            Top countries
           </h4>
           
             @foreach($topCountries as $country)
               <a class="list-group-item" href="#">
-                <span class="list-group-progress" style="width: 62.4%;"></span>
+                {{-- <span class="list-group-progress" style="width: 62.4%;"></span> --}}
+                <span class="list-group-progress"></span>
                 <span class="pull-right text-muted">{{ $country->count }}</span>
                 {{ $country->country }}
               </a>
             @endforeach
           
         </div>
-        {{-- <a href="#" class="btn btn-primary-outline p-x">View all countries</a> --}}
+        <a href="#" class="btn btn-primary-outline p-x">View all countries</a>
       </div>
       <div class="col-md-6 m-b-md">
         <div class="list-group">
@@ -136,7 +137,13 @@
             @foreach($users as $user)
               <tr>
                 <td>{{$user->id}}</td>
-                <td>{{$user->display_name}}</td>
+                <td>
+                  @if(!empty($user->display_name))
+                    {{$user->display_name}}
+                  @else
+                    -
+                  @endif
+                </td>
                 <td>{{$user->spotify_id}}</td>
                 <td>{{$user->country}}</td>
                 <td>

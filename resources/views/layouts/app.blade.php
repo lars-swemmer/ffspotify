@@ -51,6 +51,11 @@
                             <li class="{{ Request::is( 'home') ? 'active' : '' }}">
                                 <a href="home">Overview</a>
                             </li>
+                            <li class="{{ Request::is( 'artist') ? 'active' : '' }}">
+                                <a href="artist">R3HAB</a>
+                            </li>
+
+                            <li class="nav-header">Spotify</li>
                             <li class="{{ Request::is( 'users') ? 'active' : '' }}">
                                 <a href="users">Users</a>
                             </li>
@@ -59,9 +64,6 @@
                             </li>
                             <li class="{{ Request::is( 'top-artists') ? 'active' : '' }}">
                                 <a href="top-artists">Top artists</a>
-                            </li>
-                            <li class="{{ Request::is( 'artist') ? 'active' : '' }}">
-                                <a href="artist">R3HAB</a>
                             </li>
 
                             <li class="nav-header">Products</li>
