@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class SpotifyUsersTableSeeder extends Seeder
 {
@@ -11,7 +12,13 @@ class SpotifyUsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $users = factory(App\SpotifyUser::class, 10000)->create()
+    	DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+    	App\PlaylistFollow::truncate();
+    	App\ArtistFollow::truncate();
+    	App\SpotifyUser::truncate();
+    	DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        $users = factory(App\SpotifyUser::class, 100)->create()
         ->each(function($u) {
         	$user_id = $u->id;
         	$u->playlistFollows()->save(factory(App\PlaylistFollow::class)->create(['spotify_user_id' => $user_id]));
