@@ -12,11 +12,11 @@ class SpotifyUsersTableSeeder extends Seeder
      */
     public function run()
     {
-    	DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-    	App\PlaylistFollow::truncate();
-    	App\ArtistFollow::truncate();
-    	App\SpotifyUser::truncate();
-    	DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+    	// DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+    	// App\PlaylistFollow::truncate();
+    	// App\ArtistFollow::truncate();
+    	// App\SpotifyUser::truncate();
+    	// DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $users = factory(App\SpotifyUser::class, 100)->create()
         ->each(function($u) {

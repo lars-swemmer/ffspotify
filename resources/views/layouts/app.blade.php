@@ -35,7 +35,7 @@
                             <span class="sr-only">Toggle nav</span>
                         </button>
                         <a class="sidebar-brand img-responsive" href="/home">
-                            <h1 class="text-muted"><span class="icon icon-database"></span> Fanbase</h1>
+                            <span class="icon icon-database sidebar-brand-icon"> Fanbase</span>
                         </a>
                     </div>
 

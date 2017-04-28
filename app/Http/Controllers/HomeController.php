@@ -8,6 +8,7 @@ use App\SpotifyArtist;
 use App\SpotifyPlaylist;
 use App\SpotifyUser;
 use App\TopArtist;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -32,6 +33,11 @@ class HomeController extends Controller
     {
         $users = SpotifyUser::take(20)->orderBy('updated_at', 'desc')->get();
         $usersTotal = SpotifyUser::all()->count();
+
+        $usersToday = SpotifyUser::whereDate('created_at', Carbon::today())->count();
+        $artistFollowerToday = ArtistFollow::where('new_follow', '=', '1')->whereDate('created_at', Carbon::today())->count();
+        $playlistFollowerToday = PlaylistFollow::where('new_follow', '=', '1')->whereDate('created_at', Carbon::today())->count();
+
         $artistFollowers = ArtistFollow::where('new_follow', '1')->count();
         $playlistFollowers = PlaylistFollow::where('new_follow', '1')->count();
 
@@ -49,7 +55,7 @@ class HomeController extends Controller
             ->take(10)
             ->get();
 
-        return view('home', compact('users', 'usersTotal', 'artistFollowers', 'playlistFollowers', 'topArtists', 'topCountries'));
+        return view('home', compact('users', 'usersTotal', 'artistFollowers', 'playlistFollowers', 'topArtists', 'topCountries', 'usersToday', 'artistFollowerToday', 'playlistFollowerToday'));
     }
 
     /**

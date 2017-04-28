@@ -4,7 +4,7 @@
     <div class="dashhead">
         <div class="dashhead-titles">
             <h6 class="dashhead-subtitle">Dashboards</h6>
-            <h2 class="dashhead-title">Overview</h2>
+            <h2 class="dashhead-title">Overview <small class="text-muted">&middot; {{ Carbon\Carbon::today()->format('d M Y') }}</small></h2>
         </div>
 
         {{-- <div class="btn-toolbar dashhead-toolbar">
@@ -37,7 +37,11 @@
                     <span class="statcard-desc">Users</span>
                     <h2 class="statcard-number">
                         {{ $usersTotal }}
-                        {{-- <small class="delta-indicator delta-negative">0%</small> --}}
+                        @if($usersToday > '0')
+                          <small class="text-success delta-indicator delta-positive">{{ $usersToday }}</small>
+                        @else
+                          <small class="delta-indicator">-</small>
+                        @endif
                     </h2>
                     <hr class="statcard-hr m-b-0">
                 </div>
@@ -50,7 +54,11 @@
                     <span class="statcard-desc">Artist Follows</span>
                     <h2 class="statcard-number">
                         {{ $artistFollowers }}
-                        {{-- <small class="delta-indicator delta-positive">0%</small> --}}
+                        @if($artistFollowerToday > '0')
+                          <small class="text-success delta-indicator delta-positive">{{ $artistFollowerToday }}</small>
+                        @else
+                          <small class="delta-indicator">-</small>
+                        @endif
                     </h2>
                     <hr class="statcard-hr m-b-0">
                 </div>
@@ -63,7 +71,11 @@
                     <span class="statcard-desc">Playlist Follows</span>
                     <h2 class="statcard-number">
                         {{ $playlistFollowers }}
-                        {{-- <small class="delta-indicator delta-negative">0%</small> --}}
+                        @if($playlistFollowerToday > '0')
+                          <small class="text-success delta-indicator delta-positive">{{ $playlistFollowerToday }}</small>
+                        @else
+                          <small class="delta-indicator">-</small>
+                        @endif
                     </h2>
                     <hr class="statcard-hr m-b-0">
                 </div>

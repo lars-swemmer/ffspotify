@@ -40,6 +40,8 @@ $factory->define(App\SpotifyUser::class, function (Faker\Generator $faker) {
         'birthdate' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'accessToken' => str_random(256),
         'refreshToken' => str_random(256),
+        // 'created_at' => Carbon\Carbon::yesterday(),
+        // 'updated_at' => Carbon\Carbon::yesterday()
     ];
 });
 
@@ -49,6 +51,9 @@ $factory->define(App\PlaylistFollow::class, function (Faker\Generator $faker) {
         'spotify_user_id' => '1',
         'spotify_playlist_id' => $faker->numberBetween(1, 3),
         'new_follow' => $faker->numberBetween('0', '1'),
+        // 'created_at' => Carbon\Carbon::yesterday(),
+        // 'updated_at' => Carbon\Carbon::yesterday()
+
     ];
 });
 
@@ -57,5 +62,7 @@ $factory->define(App\ArtistFollow::class, function (Faker\Generator $faker) {
     return [
         'spotify_user_id' => '1',
         'new_follow' => $faker->numberBetween('0', '1'),
+        // 'created_at' => Carbon\Carbon::yesterday(),
+        // 'updated_at' => Carbon\Carbon::yesterday()
     ];
 });
