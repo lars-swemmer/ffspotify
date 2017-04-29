@@ -73,20 +73,23 @@
                                 </a>
                             </li>
 
-                            <li class="nav-header">Account</li>
-                            <li>
-                                <a href="#"> <!-- laten linken naar aanpassen account, of gewoon geen link -->
-                                    {{ Auth::user()->name }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
+                            @if(Auth::user())
+                                <li class="nav-header">Account</li>
+                                <li>
+                                    <a href="#"> <!-- laten linken naar aanpassen account, of gewoon geen link -->
+                                        {{ Auth::user()->name }}
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            @endif
                         </ul>
                         <hr class="visible-xs m-t">
                     </div>
