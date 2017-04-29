@@ -106,7 +106,6 @@
     <!-- Include jQuery (required) and the JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     {{-- <script src="{{ asset('js/chart.js') }}"></script> --}} <!-- oude versie -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
     <script src="{{ asset('js/toolkit.min.js') }}"></script>
 </body>
 </html>

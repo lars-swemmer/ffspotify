@@ -45,7 +45,13 @@
                     </h2>
                     <hr class="statcard-hr m-b-0">
                 </div>
-                <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[0,0,0,0,0,0,0]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
+                <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line"
+                  data-value="[{data:[
+                      @foreach ($weekPerformance as $day)
+                        {{ $day->new_spotify_users }},
+                      @endforeach
+                    ]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;">
+                  </canvas>
             </div>
         </div>
         <div class="col-sm-6 col-lg-3 m-b">
@@ -62,7 +68,12 @@
                     </h2>
                     <hr class="statcard-hr m-b-0">
                 </div>
-                <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[0,0,0,0,0,0,0 ]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
+                <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line"
+                  data-value="[{data:[
+                    @foreach ($weekPerformance as $day)
+                        {{ $day->new_spotify_artist_followers }},
+                    @endforeach
+                  ]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
             </div>
         </div>
         <div class="col-sm-6 col-lg-3 m-b">
@@ -79,7 +90,12 @@
                     </h2>
                     <hr class="statcard-hr m-b-0">
                 </div>
-                <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[0,0,0,0,0,0,0]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
+                <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line"
+                  data-value="[{data:[
+                    @foreach ($weekPerformance as $day)
+                        {{ $day->new_spotify_playlist_followers }},
+                    @endforeach
+                  ]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
             </div>
         </div>
     </div> <!-- /statcards -->
@@ -128,7 +144,7 @@
     </div>
 
   <div class="hr-divider m-t-md m-b">
-      <h3 class="hr-divider-content hr-divider-heading">Latest fans</h3>
+      <h3 class="hr-divider-content hr-divider-heading">New fans</h3>
   </div>
 
     <div class="table-full">
@@ -171,5 +187,7 @@
       <a href="users" class="btn btn-primary-outline p-x">View all fans</a>
 
     </div>
+
+    <script src="{{ asset('js/chart.js') }}"></script> <!-- oude versie -->
 
 @endsection

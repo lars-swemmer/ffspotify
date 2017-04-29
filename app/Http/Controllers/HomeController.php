@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ArtistFollow;
+use App\Performance;
 use App\PlaylistFollow;
 use App\SpotifyArtist;
 use App\SpotifyPlaylist;
@@ -55,7 +56,9 @@ class HomeController extends Controller
             ->take(10)
             ->get();
 
-        return view('home', compact('users', 'usersTotal', 'artistFollowers', 'playlistFollowers', 'topArtists', 'topCountries', 'usersToday', 'artistFollowerToday', 'playlistFollowerToday'));
+        $weekPerformance = Performance::where('created_at', '>' , Carbon::today()->subDays(7))->get();
+
+        return view('home', compact('users', 'usersTotal', 'artistFollowers', 'playlistFollowers', 'topArtists', 'topCountries', 'usersToday', 'artistFollowerToday', 'playlistFollowerToday', 'weekPerformance'));
     }
 
     /**
@@ -70,7 +73,11 @@ class HomeController extends Controller
         $usersToday = SpotifyUser::whereDate('created_at', Carbon::today())->count();
         $usersYesterday = SpotifyUser::whereDate('created_at', Carbon::yesterday())->count();
 
-        return view('fanbase.users', compact('users', 'usersToday', 'usersYesterday'));
+        $weekPerformance = Performance::where('created_at', '>' , Carbon::today()->subDays(7))->get();
+
+        // dd($weekPerformance);
+
+        return view('fanbase.users', compact('users', 'usersToday', 'usersYesterday', 'weekPerformance'));
     }
 
     /**

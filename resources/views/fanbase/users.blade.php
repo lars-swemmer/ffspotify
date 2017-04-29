@@ -46,18 +46,18 @@
         data: {
             labels: [
               // // dit moet dynamisch kunnen met foreach
-              "{{ Carbon\Carbon::today()->subHours(144)->format('D d M') }}",
-              "{{ Carbon\Carbon::today()->subHours(120)->format('D d M') }}",
-              "{{ Carbon\Carbon::today()->subHours(96)->format('D d M') }}",
-              "{{ Carbon\Carbon::today()->subHours(72)->format('D d M') }}",
-              "{{ Carbon\Carbon::today()->subHours(48)->format('D d M') }}",
-              "{{ Carbon\Carbon::today()->subHours(24)->format('D d M') }}",
-              "{{ Carbon\Carbon::today()->format('D d M') }}",
+              @foreach ($weekPerformance as $day)
+                "{{ Carbon\Carbon::parse($day->created_at)->format('D d M') }}",
+              @endforeach
             ],
             datasets: [{
-                label: 'Fans',
+                label: 'New fans',
                 // dit moet dynamisch worden
-                data: [0, 0, 0, 0, 0, {{ $usersYesterday }}, {{ $usersToday }}],
+                data: [
+                  @foreach ($weekPerformance as $day)
+                    {{ $day->new_spotify_users }},
+                  @endforeach
+                ],
                 backgroundColor: "rgba(75,192,192,0.4)",
                 borderColor: "rgba(75,192,192,1)",
                 borderWidth: 1
@@ -80,7 +80,7 @@
 <canvas id="graph" style="width: 100%;"></canvas>
 
 <div class="hr-divider m-t-md m-b">
-        <h3 class="hr-divider-content hr-divider-heading">Latest fans</h3>
+        <h3 class="hr-divider-content hr-divider-heading">New fans</h3>
     </div>
 
 <div class="table-full">
@@ -143,5 +143,6 @@
 </div> --}}
 
 {{-- <script src="{{ asset('js/chart_users.js') }}"></script> --}}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
 
 @endsection
