@@ -12,17 +12,42 @@ class SpotifyUsersTableSeeder extends Seeder
      */
     public function run()
     {
-    	// DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-    	// App\PlaylistFollow::truncate();
-    	// App\ArtistFollow::truncate();
-    	// App\SpotifyUser::truncate();
-    	// DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        for ($x = 7; $x > 0; $x--) {
+            if ($x == 7) {
+            	DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+            	App\PlaylistFollow::truncate();
+            	App\ArtistFollow::truncate();
+            	App\SpotifyUser::truncate();
+                App\Performance::truncate();
+            	DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+            }
 
-        $users = factory(App\SpotifyUser::class, 100)->create()
-        ->each(function($u) {
-        	$user_id = $u->id;
-        	$u->playlistFollows()->save(factory(App\PlaylistFollow::class)->create(['spotify_user_id' => $user_id]));
-        	$u->artistFollow()->save(factory(App\ArtistFollow::class)->create(['spotify_user_id' => $user_id]));
-        });
+            $date = Carbon\Carbon::today()->subDays($x-1);
+            $amount = rand(1, 100);
+
+            $users = factory(App\SpotifyUser::class, $amount)->create([
+                'created_at' => $date,
+                'updated_at' => $date
+            ])
+            ->each(function($u) use($date) {
+            	$user_id = $u->id;
+            	$u->playlistFollows()->save(factory(App\PlaylistFollow::class)->create([
+                    'spotify_user_id' => $user_id,
+                    'created_at' => $date,
+                    'updated_at' => $date
+                ]));
+            	$u->artistFollow()->save(factory(App\ArtistFollow::class)->create([
+                    'spotify_user_id' => $user_id,
+                    'created_at' => $date,
+                    'updated_at' => $date
+                ]));
+            });
+
+            $performances = factory(App\Performance::class, 1)->create([
+                'new_spotify_users' => $amount,
+                'created_at' => $date,
+                'updated_at' => $date
+            ]);
+        }
     }
 }

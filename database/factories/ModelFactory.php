@@ -1,5 +1,9 @@
 <?php
 
+use App\ArtistFollow;
+use App\PlaylistFollow;
+use App\SpotifyUser;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -39,9 +43,7 @@ $factory->define(App\SpotifyUser::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'birthdate' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'accessToken' => str_random(256),
-        'refreshToken' => str_random(256),
-        // 'created_at' => Carbon\Carbon::yesterday(),
-        // 'updated_at' => Carbon\Carbon::yesterday()
+        'refreshToken' => str_random(256)
     ];
 });
 
@@ -49,11 +51,9 @@ $factory->define(App\PlaylistFollow::class, function (Faker\Generator $faker) {
 
     return [
         'spotify_user_id' => '1',
-        'spotify_playlist_id' => $faker->numberBetween(1, 3),
-        'new_follow' => $faker->numberBetween('0', '1'),
-        // 'created_at' => Carbon\Carbon::yesterday(),
-        // 'updated_at' => Carbon\Carbon::yesterday()
-
+        // 'spotify_playlist_id' => $faker->numberBetween(1, 3), // if more playlists
+        'spotify_playlist_id' => '1',
+        'new_follow' => $faker->numberBetween('0', '1')
     ];
 });
 
@@ -61,8 +61,25 @@ $factory->define(App\ArtistFollow::class, function (Faker\Generator $faker) {
 
     return [
         'spotify_user_id' => '1',
-        'new_follow' => $faker->numberBetween('0', '1'),
-        // 'created_at' => Carbon\Carbon::yesterday(),
-        // 'updated_at' => Carbon\Carbon::yesterday()
+        'new_follow' => $faker->numberBetween('0', '1')
+    ];
+});
+
+$factory->define(App\Performance::class, function (Faker\Generator $faker) {
+
+    $users = SpotifyUser::all()->count();
+    $date = SpotifyUser::orderBy('created_at', 'desc')->pluck('created_at')->first();
+
+    $playlistFollowers = PlaylistFollow::where('new_follow', '1')->count();
+    $playlistFollowersToday = PlaylistFollow::where('new_follow', '1')->where('created_at', '=', $date)->count();
+    $artistFollowers = ArtistFollow::where('new_follow', '1')->count();
+    $artistFollowersToday = ArtistFollow::where('new_follow', '1')->where('created_at', '=', $date)->count();
+
+    return [
+        'spotify_users' => $users,
+        'spotify_playlist_followers' => $playlistFollowers,
+        'new_spotify_playlist_followers' => $playlistFollowersToday,
+        'spotify_artist_followers' => $artistFollowers,
+        'new_spotify_artist_followers' => $artistFollowersToday
     ];
 });
