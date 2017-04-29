@@ -33,7 +33,6 @@ class CreateTopArtistsTable extends Migration
      */
     public function down()
     {
-        $table->dropForeign('spotify_user_id_foreign');
         Schema::dropIfExists('top_artists');
     }
 }
