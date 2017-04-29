@@ -122,7 +122,7 @@
   </div>
 </div>
 
-<div class="text-center">
+{{-- <div class="text-center">
   <ul class="pagination">
     <li>
       <a href="#" aria-label="Previous">
@@ -140,7 +140,7 @@
       </a>
     </li>
   </ul>
-</div>
+</div> --}}
 
 {{-- <script src="{{ asset('js/chart_users.js') }}"></script> --}}
 

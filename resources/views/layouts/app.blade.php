@@ -59,12 +59,12 @@
                             <li class="{{ Request::is( 'users') ? 'active' : '' }}">
                                 <a href="users">Fans</a>
                             </li>
-                            <li class="{{ Request::is( 'playlists') ? 'active' : '' }}">
+                            {{-- <li class="{{ Request::is( 'playlists') ? 'active' : '' }}">
                                 <a href="playlists">Playlists</a>
                             </li>
                             <li class="{{ Request::is( 'top-artists') ? 'active' : '' }}">
                                 <a href="top-artists">Top artists</a>
-                            </li>
+                            </li> --}}
 
                             <li class="nav-header">Products</li>
                             <li>
@@ -75,11 +75,11 @@
 
                             @if(Auth::user())
                                 <li class="nav-header">Account</li>
-                                <li>
-                                    <a href="#"> <!-- laten linken naar aanpassen account, of gewoon geen link -->
+                                {{-- <li>
+                                    <a> laten linken naar aanpassen account, of gewoon geen link
                                         {{ Auth::user()->name }}
                                     </a>
-                                </li>
+                                </li> --}}
                                 
                                 <li>
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

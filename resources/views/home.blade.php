@@ -24,7 +24,7 @@
                     <span class="statcard-desc">Page views</span>
                     <h2 class="statcard-number">
                         0
-                        <small class="delta-indicator delta-positive">0%</small>
+                        <small class="delta-indicator">-</small>
                     </h2>
                     <hr class="statcard-hr m-b-0">
                 </div>
@@ -105,7 +105,7 @@
             @endforeach
           
         </div>
-        <a href="#" class="btn btn-primary-outline p-x">View all countries</a>
+        {{-- <a href="#" class="btn btn-primary-outline p-x">View all countries</a> --}}
       </div>
       <div class="col-md-6 m-b-md">
         <div class="list-group">
@@ -123,7 +123,7 @@
             @endforeach
           
         </div>
-        <a href="top-artists" class="btn btn-primary-outline p-x">View all artists</a>
+        {{-- <a href="top-artists" class="btn btn-primary-outline p-x">View all artists</a> --}}
       </div>
     </div>
 
@@ -168,7 +168,7 @@
           </tbody>
         </table>
       </div>
-      <a href="users" class="btn btn-primary-outline p-x">View all users</a>
+      <a href="users" class="btn btn-primary-outline p-x">View all fans</a>
 
     </div>
 
