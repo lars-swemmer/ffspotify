@@ -69,7 +69,8 @@ class HomeController extends Controller
     public function users()
     {
         // pagination inbouwen
-        $users = SpotifyUser::orderBy('updated_at', 'desc')->get();
+        $users = SpotifyUser::orderBy('updated_at', 'desc')->paginate(50);
+        $usersTotal = SpotifyUser::orderBy('updated_at', 'desc')->get();
         $usersToday = SpotifyUser::whereDate('created_at', Carbon::today())->count();
 
         // get week performance except today
@@ -77,7 +78,7 @@ class HomeController extends Controller
 
         // dd($weekPerformance);
 
-        return view('fanbase.users', compact('users', 'usersToday', 'weekPerformance'));
+        return view('fanbase.users', compact('users', 'usersToday', 'weekPerformance', 'usersTotal'));
     }
 
     /**

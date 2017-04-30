@@ -80,7 +80,7 @@
 <canvas id="graph" style="width: 100%;"></canvas>
 
 <div class="hr-divider m-t-md m-b">
-        <h3 class="hr-divider-content hr-divider-heading">{{ number_format($users->count()) }} fans</h3>
+        <h3 class="hr-divider-content hr-divider-heading">{{ number_format($usersTotal->count()) }} fans</h3>
     </div>
 
 <div class="table-full">
@@ -122,25 +122,9 @@
   </div>
 </div>
 
-{{-- <div class="text-center">
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="active"><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</div> --}}
+<div class="text-center">
+  {{ $users->links() }}  
+</div>
 
 {{-- <script src="{{ asset('js/chart_users.js') }}"></script> --}}
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
