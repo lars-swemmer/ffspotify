@@ -80,7 +80,7 @@
 <canvas id="graph" style="width: 100%;"></canvas>
 
 <div class="hr-divider m-t-md m-b">
-        <h3 class="hr-divider-content hr-divider-heading">New fans</h3>
+        <h3 class="hr-divider-content hr-divider-heading">{{ number_format($users->count()) }} fans</h3>
     </div>
 
 <div class="table-full">

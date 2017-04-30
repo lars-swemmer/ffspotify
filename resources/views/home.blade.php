@@ -36,7 +36,7 @@
                 <div class="p-a">
                     <span class="statcard-desc">Fans</span>
                     <h2 class="statcard-number">
-                        {{ $usersTotal }}
+                        {{ number_format($usersTotal) }}
                         @if($usersToday > '0')
                           <small class="text-success delta-indicator delta-positive">{{ $usersToday }}</small>
                         @else
@@ -50,7 +50,7 @@
                       @foreach ($weekPerformance as $day)
                         {{ $day->new_spotify_users }},
                       @endforeach
-                      {{ $usersToday }}
+                      {{ number_format($usersToday) }}
                     ]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;">
                   </canvas>
             </div>
@@ -60,7 +60,7 @@
                 <div class="p-a">
                     <span class="statcard-desc">Artist Follows</span>
                     <h2 class="statcard-number">
-                        {{ $artistFollowers }}
+                        {{ number_format($artistFollowers) }}
                         @if($artistFollowerToday > '0')
                           <small class="text-success delta-indicator delta-positive">{{ $artistFollowerToday }}</small>
                         @else
@@ -74,7 +74,7 @@
                     @foreach ($weekPerformance as $day)
                         {{ $day->new_spotify_artist_followers }},
                     @endforeach
-                    {{ $artistFollowerToday }}
+                    {{ number_format($artistFollowerToday) }}
                   ]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
             </div>
         </div>
@@ -83,7 +83,7 @@
                 <div class="p-a">
                     <span class="statcard-desc">Playlist Follows</span>
                     <h2 class="statcard-number">
-                        {{ $playlistFollowers }}
+                        {{ number_format($playlistFollowers) }}
                         @if($playlistFollowerToday > '0')
                           <small class="text-success delta-indicator delta-positive">{{ $playlistFollowerToday }}</small>
                         @else
@@ -97,7 +97,7 @@
                     @foreach ($weekPerformance as $day)
                         {{ $day->new_spotify_playlist_followers }},
                     @endforeach
-                    {{ $playlistFollowerToday }}
+                    {{ number_format($playlistFollowerToday) }}
                   ]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
             </div>
         </div>
