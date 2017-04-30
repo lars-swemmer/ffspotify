@@ -56,7 +56,7 @@ class HomeController extends Controller
             ->take(10)
             ->get();
 
-        $weekPerformance = Performance::where('created_at', '>' , Carbon::today()->subDays(7))->get();
+        $weekPerformance = Performance::where('created_at', '!=', Carbon::today())->where('created_at', '>' , Carbon::today()->subDays(7))->get();
 
         return view('home', compact('users', 'usersTotal', 'artistFollowers', 'playlistFollowers', 'topArtists', 'topCountries', 'usersToday', 'artistFollowerToday', 'playlistFollowerToday', 'weekPerformance'));
     }
@@ -71,13 +71,13 @@ class HomeController extends Controller
         // pagination inbouwen
         $users = SpotifyUser::orderBy('updated_at', 'desc')->get();
         $usersToday = SpotifyUser::whereDate('created_at', Carbon::today())->count();
-        $usersYesterday = SpotifyUser::whereDate('created_at', Carbon::yesterday())->count();
 
-        $weekPerformance = Performance::where('created_at', '>' , Carbon::today()->subDays(7))->get();
+        // get week performance except today
+        $weekPerformance = Performance::where('created_at', '!=', Carbon::today())->where('created_at', '>' , Carbon::today()->subDays(7))->get();
 
         // dd($weekPerformance);
 
-        return view('fanbase.users', compact('users', 'usersToday', 'usersYesterday', 'weekPerformance'));
+        return view('fanbase.users', compact('users', 'usersToday', 'weekPerformance'));
     }
 
     /**

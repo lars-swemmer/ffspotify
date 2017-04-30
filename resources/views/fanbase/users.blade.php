@@ -45,18 +45,18 @@
         type: 'line',
         data: {
             labels: [
-              // // dit moet dynamisch kunnen met foreach
               @foreach ($weekPerformance as $day)
                 "{{ Carbon\Carbon::parse($day->created_at)->format('D d M') }}",
               @endforeach
+              "{{ Carbon\Carbon::today()->format('D d M') }}"
             ],
             datasets: [{
                 label: 'New fans',
-                // dit moet dynamisch worden
                 data: [
                   @foreach ($weekPerformance as $day)
                     {{ $day->new_spotify_users }},
                   @endforeach
+                  {{ $usersToday }}
                 ],
                 backgroundColor: "rgba(75,192,192,0.4)",
                 borderColor: "rgba(75,192,192,1)",

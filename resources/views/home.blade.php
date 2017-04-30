@@ -50,6 +50,7 @@
                       @foreach ($weekPerformance as $day)
                         {{ $day->new_spotify_users }},
                       @endforeach
+                      {{ $usersToday }}
                     ]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;">
                   </canvas>
             </div>
@@ -73,6 +74,7 @@
                     @foreach ($weekPerformance as $day)
                         {{ $day->new_spotify_artist_followers }},
                     @endforeach
+                    {{ $artistFollowerToday }}
                   ]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
             </div>
         </div>
@@ -95,6 +97,7 @@
                     @foreach ($weekPerformance as $day)
                         {{ $day->new_spotify_playlist_followers }},
                     @endforeach
+                    {{ $playlistFollowerToday }}
                   ]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
             </div>
         </div>
