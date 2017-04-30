@@ -120,4 +120,16 @@ class HomeController extends Controller
 
         return view('fanbase.artist', compact('artist'));
     }
+
+    /**
+     * Exports 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function export()
+    {
+        $spotifyUsers = SpotifyUser::all(); // All users
+        $csvExporter = new \Laracsv\Export();
+        $csvExporter->build($spotifyUsers, ['spotify_id', 'email'])->download();
+    }
 }

@@ -14,7 +14,7 @@
             </div>
         </div> --}}
         <div class="btn-toolbar dashhead-toolbar">
-            <button type="button" class="btn btn-pill btn-primary"><span class="icon icon-export"></span> Export users</button>
+            <a href="export" class="btn btn-pill btn-primary"><span class="icon icon-export"></span> Export users</a>
         </div>
     </div> <!-- dashhead -->
 
