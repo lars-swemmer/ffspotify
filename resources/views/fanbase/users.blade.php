@@ -4,7 +4,8 @@
     <div class="dashhead">
         <div class="dashhead-titles">
             <h6 class="dashhead-subtitle">Spotify</h6>
-            <h2 class="dashhead-title">Fans <small class="text-muted">&middot; {{ Carbon\Carbon::today()->format('d M Y') }}</small></h2>
+            {{-- <h2 class="dashhead-title">Fans <small class="text-muted">&middot; {{ Carbon\Carbon::today()->format('d M Y') }}</small></h2> --}}
+            <h2 class="dashhead-title">Fans <small class="text-muted">&middot; Last 14 days ({{ Carbon\Carbon::today()->subDays(13)->format('d M Y') }} - {{ Carbon\Carbon::today()->format('d M Y') }})</small></h2>
         </div>
 
        {{--  <div class="btn-toolbar dashhead-toolbar">
@@ -38,46 +39,88 @@
 </div> --}}
 
 <script type="text/javascript">
-  window.onload = function() {
+    window.onload = function() {
 
-    var ctx = document.getElementById("graph");
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: [
-              @foreach ($weekPerformance as $day)
-                "{{ Carbon\Carbon::parse($day->created_at)->format('D d M') }}",
-              @endforeach
-              "{{ Carbon\Carbon::today()->format('D d M') }}"
-            ],
-            datasets: [{
-                label: 'New fans',
-                data: [
-                  @foreach ($weekPerformance as $day)
-                    {{ $day->new_spotify_users }},
-                  @endforeach
-                  {{ $usersToday }}
-                ],
-                backgroundColor: "rgba(75,192,192,0.4)",
-                borderColor: "rgba(75,192,192,1)",
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            }
-        }
-    });
+      var ctx = document.getElementById("graph");
+      var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: [
+                @foreach ($weekPerformance as $day)
+                  "{{ Carbon\Carbon::parse($day->created_at)->format('D d M') }}",
+                @endforeach
+                "{{ Carbon\Carbon::today()->format('D d M') }}"
+              ],
+              datasets: [{
+                  label: 'Total fans',
+                  data: [
+                    @foreach ($weekPerformance as $day)
+                      {{ $day->spotify_users }},
+                    @endforeach
+                    @foreach ($todayPerformance as $day)
+                      {{ $day->spotify_users }},
+                    @endforeach
+                  ],
+                  backgroundColor: "rgba(25, 181, 254,0.2)",
+                  borderColor: "rgba(25, 181, 254,1)",
+                  borderWidth: 2
+              }]
+          },
+          options: {
+              scales: {
+                  xAxes: [{
+                      display: false
+                  }]
+              }
+          }
+      });
 
-  }
-</script>
+      var ctxNew = document.getElementById("graphNew");
+      var myChartNew = new Chart(ctxNew, {
+          type: 'bar',
+          data: {
+              labels: [
+                @foreach ($weekPerformance as $day)
+                  "{{ Carbon\Carbon::parse($day->created_at)->format('D d M') }}",
+                @endforeach
+                "{{ Carbon\Carbon::today()->format('D d M') }}"
+              ],
+              datasets: [{
+                  label: 'New fans',
+                  data: [
+                    @foreach ($weekPerformance as $day)
+                      {{ $day->new_spotify_users }},
+                    @endforeach
+                    @foreach ($todayPerformance as $day)
+                      {{ $day->new_spotify_users }},
+                    @endforeach
+                  ],
+                  backgroundColor: "rgba(25, 181, 254,0.2)",
+                  borderColor: "rgba(25, 181, 254,1)",
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  xAxes: [{
+                      display: false
+                  }]
+              }
+          }
+      });
 
-<canvas id="graph" style="width: 100%;"></canvas>
+    }
+  </script>
+
+
+<div class="row p-t p-b">
+    <div class="col-md-6">
+      <canvas id="graph" style="width: 100%;"></canvas>
+    </div>
+    <div class="col-md-6">
+      <canvas id="graphNew" style="width: 100%;"></canvas>
+    </div>
+  </div>
 
 <div class="hr-divider m-t-md m-b">
         <h3 class="hr-divider-content hr-divider-heading">{{ number_format($usersTotal->count()) }} fans</h3>

@@ -32,10 +32,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = SpotifyUser::take(20)->orderBy('updated_at', 'desc')->get();
+        $users = SpotifyUser::take(10)->orderBy('updated_at', 'desc')->get();
         $usersTotal = SpotifyUser::all()->count();
 
-        $usersToday = SpotifyUser::whereDate('created_at', Carbon::today())->count();
+        $usersToday = Performance::where('created_at', '!=', Carbon::today())->pluck('spotify_users')->count();
         $artistFollowerToday = ArtistFollow::where('new_follow', '=', '1')->whereDate('created_at', Carbon::today())->count();
         $playlistFollowerToday = PlaylistFollow::where('new_follow', '=', '1')->whereDate('created_at', Carbon::today())->count();
 
@@ -56,9 +56,10 @@ class HomeController extends Controller
             ->take(10)
             ->get();
 
-        $weekPerformance = Performance::where('created_at', '!=', Carbon::today())->where('created_at', '>' , Carbon::today()->subDays(7))->get();
+        $todayPerformance = Performance::where('created_at', '=', Carbon::today())->get();
+        $weekPerformance = Performance::where('created_at', '!=', Carbon::today())->where('created_at', '>' , Carbon::today()->subDays(14))->get();
 
-        return view('home', compact('users', 'usersTotal', 'artistFollowers', 'playlistFollowers', 'topArtists', 'topCountries', 'usersToday', 'artistFollowerToday', 'playlistFollowerToday', 'weekPerformance'));
+        return view('home', compact('users', 'usersTotal', 'artistFollowers', 'playlistFollowers', 'topArtists', 'topCountries', 'usersToday', 'artistFollowerToday', 'playlistFollowerToday', 'todayPerformance', 'weekPerformance'));
     }
 
     /**
@@ -73,12 +74,13 @@ class HomeController extends Controller
         $usersTotal = SpotifyUser::orderBy('updated_at', 'desc')->get();
         $usersToday = SpotifyUser::whereDate('created_at', Carbon::today())->count();
 
+        $todayPerformance = Performance::where('created_at', '=', Carbon::today())->get();
         // get week performance except today
-        $weekPerformance = Performance::where('created_at', '!=', Carbon::today())->where('created_at', '>' , Carbon::today()->subDays(7))->get();
+        $weekPerformance = Performance::where('created_at', '!=', Carbon::today())->where('created_at', '>' , Carbon::today()->subDays(14))->get();
 
         // dd($weekPerformance);
 
-        return view('fanbase.users', compact('users', 'usersToday', 'weekPerformance', 'usersTotal'));
+        return view('fanbase.users', compact('users', 'usersToday', 'todayPerformance', 'weekPerformance', 'usersTotal'));
     }
 
     /**

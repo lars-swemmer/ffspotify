@@ -28,60 +28,38 @@
     
     <div class="container">
         <div class="row">
-            <div class="col-sm-3 sidebar">
-                <nav class="sidebar-nav">
-                    <div class="sidebar-header">
-                        <button class="nav-toggler nav-toggler-sm sidebar-toggler" type="button" data-toggle="collapse" data-target="#nav-toggleable-sm">
-                            <span class="sr-only">Toggle nav</span>
+            
+               <nav class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="container">
+                      <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                          <span class="sr-only">Toggle navigation</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
                         </button>
-                        <a class="sidebar-brand img-responsive" href="/home">
-                            <span class="icon icon-database sidebar-brand-icon"> Fanbase</span>
+                        <a class="navbar-brand navbar-brand-emphasized" href="/home">
+                         <span class="icon icon-database"></span>
+                          Fanbase
                         </a>
-                    </div>
-
-                    <div class="collapse nav-toggleable-sm" id="nav-toggleable-sm">
-                        {{-- <form class="sidebar-form">
-                            <input class="form-control" type="text" placeholder="Search...">
-                            <button type="submit" class="btn-link">
-                                <span class="icon icon-magnifying-glass"></span>
-                            </button>
-                        </form> --}}
-                        <ul class="nav nav-pills nav-stacked">
-                            <li class="nav-header">Dashboards</li>
+                      </div>
+                      <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
                             <li class="{{ Request::is( 'home') ? 'active' : '' }}">
                                 <a href="home">Overview</a>
                             </li>
-                            {{-- <li class="{{ Request::is( 'artist') ? 'active' : '' }}">
-                                <a href="artist">R3HAB</a>
-                            </li> --}}
-
-                            <li class="nav-header">Spotify</li>
                             <li class="{{ Request::is( 'users') ? 'active' : '' }}">
                                 <a href="users">Fans</a>
                             </li>
-                            {{-- <li class="{{ Request::is( 'playlists') ? 'active' : '' }}">
-                                <a href="playlists">Playlists</a>
-                            </li>
-                            <li class="{{ Request::is( 'top-artists') ? 'active' : '' }}">
-                                <a href="top-artists">Top artists</a>
-                            </li> --}}
-
-                            <li class="nav-header">Products</li>
                             <li>
                                 <a target="_blank" href="/">
-                                    Spotify connect
+                                    Product page
                                 </a>
                             </li>
-
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
                             @if(Auth::user())
-                                <li class="nav-header">Account</li>
-                                {{-- <li>
-                                    <a> laten linken naar aanpassen account, of gewoon geen link
-                                        {{ Auth::user()->name }}
-                                    </a>
-                                </li> --}}
-                                
-                                <li>
+                            <li>
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         Logout
                                     </a>
@@ -91,12 +69,12 @@
                                 </li>
                             @endif
                         </ul>
-                        <hr class="visible-xs m-t">
+                      </div>
                     </div>
-                </nav>
-            </div> <!-- sidebar -->
+                  </nav>
+            
 
-            <div class="col-sm-9 content">
+            <div class="col-sm-12 content m-t-lg">
                 @yield('content')                
             </div> <!-- /content -->
 

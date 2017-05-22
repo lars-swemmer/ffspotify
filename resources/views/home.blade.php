@@ -4,7 +4,7 @@
     <div class="dashhead">
         <div class="dashhead-titles">
             <h6 class="dashhead-subtitle">Dashboards</h6>
-            <h2 class="dashhead-title">Overview <small class="text-muted">&middot; {{ Carbon\Carbon::today()->format('d M Y') }}</small></h2>
+            <h2 class="dashhead-title">Overview <small class="text-muted">&middot; Last 14 days ({{ Carbon\Carbon::today()->subDays(13)->format('d M Y') }} - {{ Carbon\Carbon::today()->format('d M Y') }})</small></h2>
         </div>
 
         {{-- <div class="btn-toolbar dashhead-toolbar">
@@ -15,91 +15,142 @@
         </div> --}}
     </div> <!-- dashhead -->
 
+    <script type="text/javascript">
+    window.onload = function() {
+
+      var ctx = document.getElementById("graphArtist");
+      var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: [
+                @foreach ($weekPerformance as $day)
+                  "{{ Carbon\Carbon::parse($day->created_at)->format('D d M') }}",
+                @endforeach
+                "{{ Carbon\Carbon::today()->format('D d M') }}"
+              ],
+              datasets: [{
+                  label: 'Fans',
+                  data: [
+                    @foreach ($weekPerformance as $day)
+                      {{ $day->spotify_users }},
+                    @endforeach
+                    @foreach ($todayPerformance as $day)
+                      {{ $day->spotify_users }},
+                    @endforeach
+                  ],
+                  backgroundColor: "rgba(25, 181, 254,0.2)",
+                  borderColor: "rgba(25, 181, 254,1)",
+                  borderWidth: 2
+              }]
+          },
+          options: {
+              scales: {
+                  xAxes: [{
+                      display: false
+                  }]
+              }
+          }
+      });
+
+    var ctxArtist = document.getElementById("graphPlaylist");
+      var myChartArtist = new Chart(ctxArtist, {
+          type: 'line',
+          data: {
+              labels: [
+                @foreach ($weekPerformance as $day)
+                  "{{ Carbon\Carbon::parse($day->created_at)->format('d-M') }}",
+                @endforeach
+                "{{ Carbon\Carbon::today()->format('d-M') }}"
+              ],
+              datasets: [{
+                  label: 'Playlist follows',
+                  data: [
+                    @foreach ($weekPerformance as $day)
+                      {{ $day->spotify_playlist_followers }},
+                    @endforeach
+                    @foreach ($todayPerformance as $day)
+                      {{ $day->spotify_playlist_followers }},
+                    @endforeach
+                  ],
+                  backgroundColor: "rgba(25, 181, 254,0.2)",
+                  borderColor: "rgba(25, 181, 254,1)",
+                  borderWidth: 2
+              }]
+          },
+          options: {
+              scales: {
+                  xAxes: [{
+                      display: false
+                  }]
+              }
+          }
+      });
+
+    }
+
+  </script>
+
+  <hr class="m-t">
+
+  <div class="row p-t p-b">
+    <div class="col-md-6">
+      <canvas id="graphArtist" style="width: 100%;"></canvas>
+    </div>
+    <div class="col-md-6">
+      <canvas id="graphPlaylist" style="width: 100%;"></canvas>
+    </div>
+  </div>
+
     <hr class="m-t">
 
     <div class="row statcards">
-        <div class="col-sm-6 col-lg-3 m-b">
-            <div class="statcard statcard-primary">
-                <div class="p-a">
-                    <span class="statcard-desc">Page views</span>
-                    <h2 class="statcard-number">
-                        0
-                        <small class="delta-indicator">-</small>
-                    </h2>
-                    <hr class="statcard-hr m-b-0">
-                </div>
-                <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[0,0,0,0,0,0,0]}]" data-labels="['a','b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
-            </div>
+        {{-- <div class="col-sm-6 col-lg-3">
+          <div class="statcard p-a">
+            <h2 class="statcard-number">
+              12,938
+              <small class="delta-indicator">5%</small>
+            </h2>
+            <span class="statcard-desc">Page views</span>
+          </div>
+        </div> --}}
+        <div class="col-sm-6 col-lg-3">
+            <div class="statcard p-a">
+            <h2 class="statcard-number">
+              {{ number_format($usersTotal) }}
+              @if($usersToday > '0')
+                <small class="text-success delta-indicator delta-positive">{{ $usersToday }}</small>
+              @else
+                <small class="delta-indicator">-</small>
+              @endif
+            </h2>
+            <span class="statcard-desc">Fans</span>
+          </div>
         </div>
-        <div class="col-sm-6 col-lg-3 m-b">
-            <div class="statcard statcard-primary">
-                <div class="p-a">
-                    <span class="statcard-desc">Fans</span>
-                    <h2 class="statcard-number">
-                        {{ number_format($usersTotal) }}
-                        @if($usersToday > '0')
-                          <small class="text-success delta-indicator delta-positive">{{ $usersToday }}</small>
-                        @else
-                          <small class="delta-indicator">-</small>
-                        @endif
-                    </h2>
-                    <hr class="statcard-hr m-b-0">
-                </div>
-                <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line"
-                  data-value="[{data:[
-                      @foreach ($weekPerformance as $day)
-                        {{ $day->new_spotify_users }},
-                      @endforeach
-                      {{ number_format($usersToday) }}
-                    ]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;">
-                  </canvas>
-            </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="statcard p-a">
+            <h2 class="statcard-number">
+              {{ number_format($playlistFollowers) }}
+              @if($playlistFollowerToday > '0')
+                <small class="text-success delta-indicator delta-positive">{{ $playlistFollowerToday }}</small>
+              @else
+                <small class="delta-indicator">-</small>
+              @endif
+            </h2>
+            <span class="statcard-desc">Playlist Follows</span>
+          </div>
         </div>
-        <div class="col-sm-6 col-lg-3 m-b">
-            <div class="statcard statcard-primary">
-                <div class="p-a">
-                    <span class="statcard-desc">Artist Follows</span>
-                    <h2 class="statcard-number">
-                        {{ number_format($artistFollowers) }}
-                        @if($artistFollowerToday > '0')
-                          <small class="text-success delta-indicator delta-positive">{{ $artistFollowerToday }}</small>
-                        @else
-                          <small class="delta-indicator">-</small>
-                        @endif
-                    </h2>
-                    <hr class="statcard-hr m-b-0">
-                </div>
-                <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line"
-                  data-value="[{data:[
-                    @foreach ($weekPerformance as $day)
-                        {{ $day->new_spotify_artist_followers }},
-                    @endforeach
-                    {{ number_format($artistFollowerToday) }}
-                  ]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
-            </div>
-        </div>
-        <div class="col-sm-6 col-lg-3 m-b">
-            <div class="statcard statcard-primary">
-                <div class="p-a">
-                    <span class="statcard-desc">Playlist Follows</span>
-                    <h2 class="statcard-number">
-                        {{ number_format($playlistFollowers) }}
-                        @if($playlistFollowerToday > '0')
-                          <small class="text-success delta-indicator delta-positive">{{ $playlistFollowerToday }}</small>
-                        @else
-                          <small class="delta-indicator">-</small>
-                        @endif
-                    </h2>
-                    <hr class="statcard-hr m-b-0">
-                </div>
-                <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line"
-                  data-value="[{data:[
-                    @foreach ($weekPerformance as $day)
-                        {{ $day->new_spotify_playlist_followers }},
-                    @endforeach
-                    {{ number_format($playlistFollowerToday) }}
-                  ]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
-            </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="statcard p-a">
+            <h2 class="statcard-number">
+              {{ number_format($artistFollowers) }}
+              @if($artistFollowerToday > '0')
+                <small class="text-success delta-indicator delta-positive">{{ $artistFollowerToday }}</small>
+              @else
+                <small class="delta-indicator">-</small>
+              @endif
+            </h2>
+            <span class="statcard-desc">Artist Follows</span>
+          </div>
         </div>
     </div> <!-- /statcards -->
 
@@ -108,7 +159,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-6 m-b-md">
+      <div class="col-md-4 m-b-md">
         <div class="list-group">
           <h4 class="list-group-header">
             Top countries
@@ -126,7 +177,7 @@
         </div>
         {{-- <a href="#" class="btn btn-primary-outline p-x">View all countries</a> --}}
       </div>
-      <div class="col-md-6 m-b-md">
+      <div class="col-md-4 m-b-md">
         <div class="list-group">
           <h4 class="list-group-header">
             Top artists
@@ -144,9 +195,28 @@
         </div>
         {{-- <a href="top-artists" class="btn btn-primary-outline p-x">View all artists</a> --}}
       </div>
+
+      <div class="col-md-4 m-b-md">
+        <div class="list-group">
+          <h4 class="list-group-header">
+            New fans
+          </h4>
+          
+            @foreach($users as $user)
+
+            <a class="list-group-item">
+              <span class="pull-right text-muted">{{ $user->updated_at->diffForHumans() }}</span>
+              {{ $user->spotify_id }}
+            </a>
+
+            @endforeach
+          
+        </div>
+        {{-- <a href="top-artists" class="btn btn-primary-outline p-x">View all artists</a> --}}
+      </div>
     </div>
 
-  <div class="hr-divider m-t-md m-b">
+ {{--  <div class="hr-divider m-t-md m-b">
       <h3 class="hr-divider-content hr-divider-heading">New fans</h3>
   </div>
 
@@ -189,8 +259,9 @@
       </div>
       <a href="users" class="btn btn-primary-outline p-x">View all fans</a>
 
-    </div>
+    </div> --}}
 
-    <script src="{{ asset('js/chart.js') }}"></script> <!-- oude versie -->
+    {{-- <script src="{{ asset('js/chart_users.js') }}"></script> --}}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
 
 @endsection
