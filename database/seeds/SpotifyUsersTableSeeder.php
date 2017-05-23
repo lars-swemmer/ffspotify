@@ -12,8 +12,8 @@ class SpotifyUsersTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($x = 2; $x > 0; $x--) {
-            if ($x == 2) {
+        for ($x = 14; $x > 0; $x--) {
+            if ($x == 14) {
             	DB::statement('SET FOREIGN_KEY_CHECKS=0;');
             	App\PlaylistFollow::truncate();
             	App\ArtistFollow::truncate();
@@ -23,7 +23,7 @@ class SpotifyUsersTableSeeder extends Seeder
             }
 
             $date = Carbon\Carbon::today()->subDays($x-1);
-            $amount = rand(1, 500);
+            $amount = rand(0, 0);
 
             $users = factory(App\SpotifyUser::class, $amount)->create([
                 'created_at' => $date,
