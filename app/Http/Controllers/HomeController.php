@@ -35,7 +35,7 @@ class HomeController extends Controller
         $users = SpotifyUser::take(10)->orderBy('updated_at', 'desc')->get();
         $usersTotal = SpotifyUser::all()->count();
 
-        $usersToday = Performance::where('created_at', '!=', Carbon::today())->pluck('spotify_users')->count();
+        $usersToday = SpotifyUser::where('created_at', '=', Carbon::today())->pluck('id')->count();
         $artistFollowerToday = ArtistFollow::where('new_follow', '=', '1')->whereDate('created_at', Carbon::today())->count();
         $playlistFollowerToday = PlaylistFollow::where('new_follow', '=', '1')->whereDate('created_at', Carbon::today())->count();
 
