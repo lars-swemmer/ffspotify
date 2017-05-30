@@ -23,7 +23,7 @@ class SpotifyUsersTableSeeder extends Seeder
             }
 
             $date = Carbon\Carbon::today()->subDays($x-1);
-            $amount = rand(0, 500);
+            $amount = rand(0, 0);
 
             $users = factory(App\SpotifyUser::class, $amount)->create([
                 'created_at' => $date,
