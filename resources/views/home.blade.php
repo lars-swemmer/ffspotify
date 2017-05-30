@@ -35,7 +35,7 @@
                       {{ $day->spotify_users }},
                     @endforeach
                     @foreach ($todayPerformance as $day)
-                      {{ $day->spotify_users }},
+                      {{ $day->spotify_users+$usersToday }},
                     @endforeach
                   ],
                   backgroundColor: "rgba(25, 181, 254,0.2)",
@@ -69,7 +69,7 @@
                       {{ $day->spotify_playlist_followers }},
                     @endforeach
                     @foreach ($todayPerformance as $day)
-                      {{ $day->spotify_playlist_followers }},
+                      {{ $day->spotify_playlist_followers+$playlistFollowerToday }},
                     @endforeach
                   ],
                   backgroundColor: "rgba(25, 181, 254,0.2)",
