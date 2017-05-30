@@ -23,7 +23,7 @@ class SpotifyUsersTableSeeder extends Seeder
             }
 
             $date = Carbon\Carbon::today()->subDays($x-1);
-            $amount = rand(0, 0);
+            $amount = rand(0, 500);
 
             $users = factory(App\SpotifyUser::class, $amount)->create([
                 'created_at' => $date,
@@ -45,6 +45,7 @@ class SpotifyUsersTableSeeder extends Seeder
 
             $performances = factory(App\Performance::class, 1)->create([
                 'new_spotify_users' => $amount,
+                'date' => Carbon\Carbon::parse($date)->format('Y-m-d'),
                 'created_at' => $date,
                 'updated_at' => $date
             ]);
