@@ -57,7 +57,7 @@ class HomeController extends Controller
             ->get();
 
         $todayPerformance = Performance::where('created_at', '>=', Carbon::yesterday())->where('created_at', '<', Carbon::today())->get();
-        $weekPerformance = Performance::where('created_at', '!=', Carbon::today())->where('created_at', '>' , Carbon::today()->subDays(14))->get();
+        $weekPerformance = Performance::where('created_at', '<', Carbon::today())->where('created_at', '>' , Carbon::today()->subDays(14))->get();
 
         return view('home', compact('users', 'usersTotal', 'artistFollowers', 'playlistFollowers', 'topArtists', 'topCountries', 'usersToday', 'artistFollowerToday', 'playlistFollowerToday', 'todayPerformance', 'weekPerformance'));
     }
@@ -77,7 +77,7 @@ class HomeController extends Controller
 
         $todayPerformance = Performance::where('created_at', '>=', Carbon::yesterday())->where('created_at', '<', Carbon::today())->get();
         // get week performance except today
-        $weekPerformance = Performance::where('created_at', '!=', Carbon::today())->where('created_at', '>' , Carbon::today()->subDays(14))->get();
+        $weekPerformance = Performance::where('created_at', '<', Carbon::today())->where('created_at', '>' , Carbon::today()->subDays(14))->get();
 
         // dd($weekPerformance);
 
