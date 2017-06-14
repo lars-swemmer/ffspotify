@@ -20,7 +20,7 @@
                     <img src="/images/{{ $artist->logo }}">
                 </div> <!-- main-logo -->
 
-                <div class="text-center main-copy">
+                {{-- <div class="text-center main-copy">
                     <h1><i class="fa fa-check-circle-o" aria-hidden="true"></i> Thanks for following me!</h1>
                     <h3>You're now the first to hear my brand new music</h3>
                     <a target="_blank" href="https://open.spotify.com/user/{{ $playlist->user_id }}/playlist/{{ $playlist->playlist_id }}" class="btn btn-lg btn-success">Listen now</a>
@@ -28,6 +28,27 @@
 
                 <div class="main-phone text-center">
                     <img src="/images/{{ $artist->image_playlist }}">
+                </div> --}}
+
+                <div class="text-center main-copy">
+                    <h1>Thanks for following me!</h1>
+                    <h3>You're now the first to hear my brand new music</h3>
+                    <a target="_blank" href="https://open.spotify.com/user/{{ $playlist->user_id }}/playlist/{{ $playlist->playlist_id }}" class="btn btn-lg btn-success">Listen now</a>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-offset-3 col-sm-offset-3 col-md-3 col-sm-3 col-xs-6">
+                        <div class="artwork">
+                            <img class="img-responsive" src="/TruthOrDare-Spotify-1400x1400.jpg">
+                            <p class="text-center" style="color: grey; padding-top: 10px;">Release: June 23rd</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-6">
+                        <div class="artwork">
+                            <img class="img-responsive" src="https://u.scdn.co/images/pl/default/9121211b266211ea356e123e4c78b71d374ddbda">
+                            <p class="text-center" style="color: grey; padding-top: 10px;">R3HAB | Night Playlist</p>
+                        </div>
+                    </div>
                 </div>
 
             </div>  <!-- hero-wrapper -->
