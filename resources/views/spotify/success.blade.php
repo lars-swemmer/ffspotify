@@ -33,6 +33,10 @@
     </head>
     <body>
         
+          @if (session('completed_steps'))
+            <script> fbq('track', 'SpotifyReleaseSubscription'); </script>
+          @endif
+
         <div class="container-fluid hero-wrapper" style="background-image:url('/images/{{ $artist->image_background }}');">
             <div class="container header-wrapper">
 
