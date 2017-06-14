@@ -67,7 +67,7 @@ h1 .fa-check-circle-o {
 .main-copy img.spotify-logo {height: 50px;}
 
 .main-phone{
-	/*background-color: yellow*/;
+	/*background-color: yellow;*/
 	height: 630px;
 	position: relative;
 }
@@ -78,11 +78,16 @@ h1 .fa-check-circle-o {
 	margin-left: -198px;
 }
 
+.artwork {
+	margin-top: 50px;
+	margin-bottom: 140px;
+}
+
 .footer-wrapper{background-color: #241126;}
 
 .footer-content {
 	/*background-color: brown*/;
-	margin: 280px auto 140px;
+	margin: 140px auto 140px;
 }
 
 .latest-releases-copy {

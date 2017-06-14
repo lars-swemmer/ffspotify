@@ -21,13 +21,28 @@
                 </div> <!-- main-logo -->
 
                 <div class="text-center main-copy">
-                    <h1>Follow me on <i class="fa fa-spotify" aria-hidden="true"></i> Spotify</h1>
-                    <h3>And be the first to hear my brand new music</h3>
+                    <h1>Follow my playlist on <i class="fa fa-spotify" aria-hidden="true"></i> Spotify</h1>
+                    <h3>And be the first to hear my brand new single 'Truth or Dare' ft. Little Daylight</h3>
                     <a href="{{ $oauthUrl }}" class="btn btn-lg btn-success">Click here to connect &amp; follow</a>
                 </div>
 
-                <div class="main-phone text-center">
+                {{-- <div class="main-phone text-center">
                     <img src="/images/{{ $artist->image_playlist }}">
+                </div> --}}
+
+                <div class="row">
+                    <div class="col-md-offset-3 col-sm-offset-3 col-md-3 col-sm-3 col-xs-6">
+                        <div class="artwork">
+                            <img class="img-responsive" src="/TruthOrDare-Spotify-1400x1400.jpg">
+                            <p class="text-center" style="color: grey; padding-top: 10px;">Release: June 23rd</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-6">
+                        <div class="artwork">
+                            <img class="img-responsive" src="https://u.scdn.co/images/pl/default/9121211b266211ea356e123e4c78b71d374ddbda">
+                            <p class="text-center" style="color: grey; padding-top: 10px;">R3HAB | Night Playlist</p>
+                        </div>
+                    </div>
                 </div>
 
             </div>  <!-- hero-wrapper -->
